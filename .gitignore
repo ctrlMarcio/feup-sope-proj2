@@ -1,0 +1,8 @@
+# Ignore bin files
+**/bin
+
+# vs code file
+**/.vscode
+
+# logile
+**/*.log
