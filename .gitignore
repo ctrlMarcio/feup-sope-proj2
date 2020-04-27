@@ -2,7 +2,6 @@
 **/bin
 
 # vs code file
-**/.vscode
-
-# logile
-**/*.log
+**/.vscode/*
+!/.vscode/launch.json
+!/.vscode/tasks.json
