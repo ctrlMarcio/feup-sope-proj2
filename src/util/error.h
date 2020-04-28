@@ -12,4 +12,9 @@
  */
 #define ARGS_ERROR 1
 
+/**
+ * @brief   Defines an error connecting the client and the server.
+ */
+#define CONNECTION_ERROR 2
+
 #endif
