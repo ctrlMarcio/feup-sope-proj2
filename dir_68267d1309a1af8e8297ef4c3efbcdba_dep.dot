@@ -1,0 +1,13 @@
+digraph "/home/runner/work/feup-sope-proj2/feup-sope-proj2/src" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_68267d1309a1af8e8297ef4c3efbcdba {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_68267d1309a1af8e8297ef4c3efbcdba.html"];
+    dir_68267d1309a1af8e8297ef4c3efbcdba [shape=plaintext label="src"];
+    dir_6908ff505388a07996d238c763adbdab [shape=box label="client" color="black" fillcolor="white" style="filled" URL="dir_6908ff505388a07996d238c763adbdab.html"];
+    dir_075bb3ff235063c77951cd176d15a741 [shape=box label="server" color="black" fillcolor="white" style="filled" URL="dir_075bb3ff235063c77951cd176d15a741.html"];
+    dir_b7878ad5ecbf2506f4125b9d34c97e45 [shape=box label="util" color="black" fillcolor="white" style="filled" URL="dir_b7878ad5ecbf2506f4125b9d34c97e45.html"];
+  }
+  dir_6908ff505388a07996d238c763adbdab->dir_b7878ad5ecbf2506f4125b9d34c97e45 [headlabel="1", labeldistance=1.5 headhref="dir_000001_000003.html"];
+}
