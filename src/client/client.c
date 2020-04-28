@@ -3,14 +3,16 @@
 #include <pthread.h>
 #include <string.h>
 #include <stdio.h>
-#include "error.h"
+#include "../util/error.h"
 
-/* TODO DELETE */ #define MAX_FIFO_NAME 1024
+//TODO DELETE
+#define MAX_FIFO_NAME 1024
 
 /**
  * @brief   The name of the folder where FIFOs are to be interchanged.
  */
-/* TODO DELETE */ const char *FIFO_FOLDER = "/tmp/";
+// TODO DELETE
+const char *FIFO_FOLDER = "/tmp/";
 
 int read_args(int argc, char *argv[]);
 void read_fifo_name(char *dst, char *fifo_name);
