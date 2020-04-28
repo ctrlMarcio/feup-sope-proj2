@@ -1,0 +1,1 @@
+#define MAX_FIFO_NAME_SIZE 1024
