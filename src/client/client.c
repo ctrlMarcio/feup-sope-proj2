@@ -8,12 +8,12 @@
 /* TODO DELETE */ #define MAX_FIFO_NAME 1024
 
 /**
- * \brief   The name of the folder where FIFOs are to be interchanged.
+ * @brief   The name of the folder where FIFOs are to be interchanged.
  */
 /* TODO DELETE */ const char *FIFO_FOLDER = "/tmp/";
 
 int read_args(int argc, char *argv[]);
-void read_fifo_name(char *dst, char *fifoName);
+void read_fifo_name(char *dst, char *fifo_name);
 
 int main(int argc, char *argv[])
 {
@@ -21,11 +21,11 @@ int main(int argc, char *argv[])
     int nsecs = read_args(argc, argv);
 
     // save public fifo name
-    char publicFifo[MAX_FIFO_NAME]; // TODO save this globally
-    read_fifo_name(publicFifo, argv[3]);
+    char public_fifo[MAX_FIFO_NAME]; // TODO save this globally
+    read_fifo_name(public_fifo, argv[3]);
 
     // TEST
-    printf("%s\n", publicFifo);
+    printf("tas a sonhar %s\n", public_fifo);
 
     // send sigalarm
 
@@ -39,11 +39,11 @@ int main(int argc, char *argv[])
 }
 
 /**
- * \brief   Reads the arguments passed by the terminal.
+ * @brief   Reads the arguments passed by the terminal.
  * 
- * \param argc  The argument count
- * \param argv  The arguments array
- * \return int  The number of seconds for the program to run, "nsecs"
+ * @param argc  The argument count
+ * @param argv  The arguments array
+ * @return int  The number of seconds for the program to run, "nsecs"
  */
 int read_args(int argc, char *argv[])
 {
@@ -70,19 +70,19 @@ int read_args(int argc, char *argv[])
 }
 
 /**
- * \brief   Appends and updates the FIFO's name.
+ * @brief   Appends and updates the FIFO's name.
  * 
- * \param dst       The string to read the name to
- * \param fifoName  The name of the FIFO.
+ * @param dst       The string to read the name to
+ * @param fifo_name The name of the FIFO.
  */
-void read_fifo_name(char *dst, char *fifoName)
+void read_fifo_name(char *dst, char *fifo_name)
 {
-    if (!strcmp(fifoName, "..") || !strcmp(fifoName, "."))
+    if (!strcmp(fifo_name, "..") || !strcmp(fifo_name, "."))
     {
         fprintf(stderr, "Invalid FIFO name\n");
         exit(ARGS_ERROR);
     }
 
     strcpy(dst, FIFO_FOLDER);
-    strcat(dst, fifoName);
+    strcat(dst, fifo_name);
 }
