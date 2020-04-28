@@ -12,11 +12,12 @@
 
 int public_fifo_fd;
 
+char fifoname[MAX_FIFO_NAME_SIZE];
+
 int main(int argc, char *argv[])
 {
     // Argument reading and checking
     int number_of_seconds;
-    char fifoname[MAX_FIFO_NAME_SIZE];
 
     read_arguments(argc, argv, &number_of_seconds, fifoname);
 
@@ -25,7 +26,7 @@ int main(int argc, char *argv[])
     alarm(number_of_seconds);
 
     // FIFO
-    public_fifo_fd = init_public_fifo();
+    public_fifo_fd = init_public_fifo(fifoname);
 
     // Thread
     while (1){
@@ -69,9 +70,9 @@ void read_arguments(int argc, char *argv[], int *number_of_seconds, char *fifona
     }
 }
 
-int init_public_fifo()
+int init_public_fifo(char *fifoname)
 {
-    if (mkfifo(PUBLIC_FIFO_NAME, FIFO_PERMS) < 0)
+    if (mkfifo(fifoname, FIFO_PERMS) < 0)
     {
         perror("Can't create FIFO");
         // todo replace the exit code
@@ -79,13 +80,13 @@ int init_public_fifo()
     }
     else
     {
-        printf("FIFO '%s' sucessfully created\n", PUBLIC_FIFO_NAME);
+        printf("FIFO '%s' sucessfully created\n", fifoname);
     }
 
     int fd;
 
-    if ((fd = open(PUBLIC_FIFO_NAME, O_RDONLY)) != -1)
-        printf("FIFO '%s' [%d] openned in READONLY mode\n", PUBLIC_FIFO_NAME, fd);
+    if ((fd = open(fifoname, O_RDONLY)) != -1)
+        printf("FIFO '%s' [%d] openned in READONLY mode\n", fifoname, fd);
     else
     {
         perror("Could not open FIFO");
@@ -98,7 +99,7 @@ int init_public_fifo()
 
 void close_public_fifo(){
     close(public_fifo_fd);
-    unlink(PUBLIC_FIFO_NAME);
+    unlink(fifoname);
 }
 
 void terminate(int signo)
