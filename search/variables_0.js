@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['request_5ffd',['request_fd',['../client_8c.html#a20c9aace2f5ba8615ffb6209befed6e6',1,'client.c']]]
+  ['dur',['dur',['../structquery.html#a4d7a60d2f5445c959b2d512d8d8307ea',1,'query']]]
 ];

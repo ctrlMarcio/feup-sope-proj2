@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['error_2eh',['error.h',['../error_8h.html',1,'']]]
+  ['dur',['dur',['../structquery.html#a4d7a60d2f5445c959b2d512d8d8307ea',1,'query']]]
 ];

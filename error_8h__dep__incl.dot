@@ -5,4 +5,6 @@ digraph "/home/runner/work/feup-sope-proj2/feup-sope-proj2/src/util/error.h"
   Node1 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/util/error.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/client/client.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$client_8c.html",tooltip="Runs the main client operations. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/server/server.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server_8h.html",tooltip="Methods related to the server side. "];
 }

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['terminate',['terminate',['../client_8c.html#a498c1ab75c992976e45778129becff18',1,'terminate(int signo):&#160;client.c'],['../server_8h.html#a498c1ab75c992976e45778129becff18',1,'terminate(int signo):&#160;client.c']]]
+  ['open_5fpublic_5ffifo',['open_public_fifo',['../client_8c.html#a9ac6213dd670c5dbacdf596ad1d982be',1,'client.c']]]
 ];
