@@ -1,13 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <string.h>
-#include <signal.h>
-#include <pthread.h>
-#include <fcntl.h>
-
 #include "server.h"
 
 int public_fifo_fd;
@@ -29,11 +19,19 @@ int main(int argc, char *argv[])
     public_fifo_fd = init_public_fifo(fifoname);
 
     // Thread
-    while (1){
-        // Read information struct and create thread
+    query request;
+
+    while (1)
+    {
+        read(public_fifo_fd, &request, sizeof(query));
+
+        // TODO: RECVD
+        pthread_t tid;
+        pthread_create(&tid, NULL, answer_handler, &request);
+        pthread_detach(tid);
     }
 
-    exit(0);
+    pthread_exit(0);
 }
 
 void read_arguments(int argc, char *argv[], int *number_of_seconds, char *fifoname)
@@ -41,14 +39,13 @@ void read_arguments(int argc, char *argv[], int *number_of_seconds, char *fifona
     if (argc != ARGUMENT_COUNT)
     {
         fprintf(stderr, "Usage: %s -t <number of seconds> <fifoname>\n", argv[0]);
-        exit(1);
+        exit(ARGS_ERROR);
     }
 
     if (strcmp(argv[1], "-t"))
     {
         fprintf(stderr, "Usage: %s -t <number of seconds> <fifoname>\n", argv[0]);
-        // todo replace the exit code
-        exit(1);
+        exit(ARGS_ERROR);
     }
 
     *number_of_seconds = atoi(argv[2]);
@@ -56,8 +53,7 @@ void read_arguments(int argc, char *argv[], int *number_of_seconds, char *fifona
     if (*number_of_seconds <= 0)
     {
         fprintf(stderr, "The number of seconds must be greater than 0\n");
-        // todo replace the exit code
-        exit(1);
+        exit(ARGS_ERROR);
     }
 
     strcpy(fifoname, argv[ARGUMENT_COUNT - 1]);
@@ -65,8 +61,7 @@ void read_arguments(int argc, char *argv[], int *number_of_seconds, char *fifona
     if (!strcmp(fifoname, ".") || !strcmp(fifoname, ".."))
     {
         fprintf(stderr, "The fifo name is invalid\n");
-        // todo replace the exit code
-        exit(1);
+        exit(ARGS_ERROR);
     }
 }
 
@@ -75,12 +70,11 @@ int init_public_fifo(char *fifoname)
     if (mkfifo(fifoname, FIFO_PERMS) < 0)
     {
         perror("Can't create FIFO");
-        // todo replace the exit code
-        exit(1);
+        exit(FIFO_CREATION_ERROR);
     }
     else
     {
-        printf("FIFO '%s' sucessfully created\n", fifoname);
+        printf("FIFO '%s' successfully created\n", fifoname);
     }
 
     int fd;
@@ -90,14 +84,14 @@ int init_public_fifo(char *fifoname)
     else
     {
         perror("Could not open FIFO");
-        // todo replace the exit code
-        exit(2);
+        exit(FIFO_CREATION_ERROR);
     }
 
     return fd;
 }
 
-void close_public_fifo(){
+void close_public_fifo()
+{
     close(public_fifo_fd);
     unlink(fifoname);
 }
@@ -119,7 +113,39 @@ void init_alarm()
     if (sigaction(SIGALRM, &action, NULL) < 0)
     {
         fprintf(stderr, "Unable to install alarm handler\n");
-        // todo replace the exit code
-        exit(1);
+        exit(INIT_ALARM_ERROR);
     }
+}
+
+void *answer_handler(void *arg)
+{
+    query request = *(query *)arg;
+
+    // todo check if thread is possible to execute
+
+    usleep(request.dur * 1000);
+
+    // todo change the place number
+    query answer = {request.i, getpid(), pthread_self(), request.dur, 1};
+
+    char private_fifoname[MAX_FIFO_NAME_SIZE];
+
+    sprintf(private_fifoname, "/%s/%ld.%ld", FIFO_FOLDER, (long)request.pid, (long)request.tid);
+
+    int private_fifo_fd = open_private_fifo(private_fifoname);
+
+    write(private_fifo_fd, &answer, sizeof(query));
+}
+
+int open_private_fifo(char *fifo_name)
+{
+    int fd = open(fifo_name, O_WRONLY);
+
+    if (fd == -1)
+    {
+        fprintf(stderr, "Server unavailable, aborting\n");
+        exit(CONNECTION_ERROR);
+    }
+
+    return fd;
 }

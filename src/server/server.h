@@ -6,8 +6,17 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <string.h>
+#include <signal.h>
+#include <pthread.h>
+#include <fcntl.h>
 
+#include "../util/error.h"
 #include "../util/utils.h"
 
 /**
@@ -24,5 +33,9 @@ void close_public_fifo();
 void terminate(int signo);
 
 void init_alarm();
+
+void *answer_handler(void *arg);
+
+int open_private_fifo(char *fifo_name);
 
 #endif
