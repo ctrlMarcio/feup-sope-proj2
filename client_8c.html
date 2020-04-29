@@ -82,6 +82,7 @@ $(function() {
 <code>#include &lt;sys/types.h&gt;</code><br />
 <code>#include &lt;sys/stat.h&gt;</code><br />
 <code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="error_8h_source.html">../util/error.h</a>&quot;</code><br />
 <code>#include &quot;../util/utils.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -107,8 +108,20 @@ Functions</h2></td></tr>
 <tr class="memdesc:a498c1ab75c992976e45778129becff18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Terminates the program.  <a href="#a498c1ab75c992976e45778129becff18">More...</a><br /></td></tr>
 <tr class="separator:a498c1ab75c992976e45778129becff18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ac6213dd670c5dbacdf596ad1d982be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a9ac6213dd670c5dbacdf596ad1d982be">open_public_fifo</a> (char *fifo_name)</td></tr>
-<tr class="memdesc:a9ac6213dd670c5dbacdf596ad1d982be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the.  <a href="#a9ac6213dd670c5dbacdf596ad1d982be">More...</a><br /></td></tr>
+<tr class="memdesc:a9ac6213dd670c5dbacdf596ad1d982be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the public FIFO.  <a href="#a9ac6213dd670c5dbacdf596ad1d982be">More...</a><br /></td></tr>
 <tr class="separator:a9ac6213dd670c5dbacdf596ad1d982be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff6c714566dd1f4db8dd5720311ed5d7"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#aff6c714566dd1f4db8dd5720311ed5d7">request_handler</a> (void *arg)</td></tr>
+<tr class="memdesc:aff6c714566dd1f4db8dd5720311ed5d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a request to the server and waits for the response.  <a href="#aff6c714566dd1f4db8dd5720311ed5d7">More...</a><br /></td></tr>
+<tr class="separator:aff6c714566dd1f4db8dd5720311ed5d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41a1d865d8e6aa2c5024f7e47d7b9aab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a41a1d865d8e6aa2c5024f7e47d7b9aab">create_private_fifo</a> (pid_t pid, pthread_t tid, char *fifo_name)</td></tr>
+<tr class="memdesc:a41a1d865d8e6aa2c5024f7e47d7b9aab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a private FIFO.  <a href="#a41a1d865d8e6aa2c5024f7e47d7b9aab">More...</a><br /></td></tr>
+<tr class="separator:a41a1d865d8e6aa2c5024f7e47d7b9aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d52ad6ade5bad2abcebc5984940478d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a6d52ad6ade5bad2abcebc5984940478d">open_private_fifo</a> (char *fifo_name)</td></tr>
+<tr class="memdesc:a6d52ad6ade5bad2abcebc5984940478d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens an existing private FIFO.  <a href="#a6d52ad6ade5bad2abcebc5984940478d">More...</a><br /></td></tr>
+<tr class="separator:a6d52ad6ade5bad2abcebc5984940478d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fd5ba31240a617f179494157d17da49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a6fd5ba31240a617f179494157d17da49">destroy_private_fifo</a> (int fd, char *name)</td></tr>
+<tr class="memdesc:a6fd5ba31240a617f179494157d17da49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes and destroys the private FIFO.  <a href="#a6fd5ba31240a617f179494157d17da49">More...</a><br /></td></tr>
+<tr class="separator:a6fd5ba31240a617f179494157d17da49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top"><a id="a0ddf1224851353fc92bfbff6f499fa97"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,11 +132,124 @@ Variables</h2></td></tr>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a20c9aace2f5ba8615ffb6209befed6e6">request_fd</a></td></tr>
 <tr class="memdesc:a20c9aace2f5ba8615ffb6209befed6e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the file descriptor of the public fifo. <br /></td></tr>
 <tr class="separator:a20c9aace2f5ba8615ffb6209befed6e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8a963a669332666320bfe3e3be4f601"><td class="memItemLeft" align="right" valign="top"><a id="ab8a963a669332666320bfe3e3be4f601"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ab8a963a669332666320bfe3e3be4f601">MILLIS_DELAY</a> = 100</td></tr>
+<tr class="memdesc:ab8a963a669332666320bfe3e3be4f601"><td class="mdescLeft">&#160;</td><td class="mdescRight">The delay, in milliseconds, between each request thread. <br /></td></tr>
+<tr class="separator:ab8a963a669332666320bfe3e3be4f601"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Runs the main client operations. </p>
 <dl class="section date"><dt>Date</dt><dd>2020-04-28 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a41a1d865d8e6aa2c5024f7e47d7b9aab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41a1d865d8e6aa2c5024f7e47d7b9aab">&#9670;&nbsp;</a></span>create_private_fifo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void create_private_fifo </td>
+          <td>(</td>
+          <td class="paramtype">pid_t&#160;</td>
+          <td class="paramname"><em>pid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">pthread_t&#160;</td>
+          <td class="paramname"><em>tid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>fifo_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a private FIFO. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pid</td><td>The process ID </td></tr>
+    <tr><td class="paramname">tid</td><td>The thread ID </td></tr>
+    <tr><td class="paramname">fifo_name</td><td>The pointer to the name of the FIFO to save </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6fd5ba31240a617f179494157d17da49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fd5ba31240a617f179494157d17da49">&#9670;&nbsp;</a></span>destroy_private_fifo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void destroy_private_fifo </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Closes and destroys the private FIFO. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fd</td><td>The FIFO fd </td></tr>
+    <tr><td class="paramname">name</td><td>The name of the FIFO </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6d52ad6ade5bad2abcebc5984940478d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d52ad6ade5bad2abcebc5984940478d">&#9670;&nbsp;</a></span>open_private_fifo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int open_private_fifo </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>fifo_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Opens an existing private FIFO. </p>
+<dl class="section warning"><dt>Warning</dt><dd>The FIFO must already exist.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fifo_name</td><td>The name of the FIFO </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int The file descriptor of the FIFO </dd></dl>
+
+</div>
+</div>
 <a id="a9ac6213dd670c5dbacdf596ad1d982be"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9ac6213dd670c5dbacdf596ad1d982be">&#9670;&nbsp;</a></span>open_public_fifo()</h2>
 
@@ -140,14 +266,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clien
       </table>
 </div><div class="memdoc">
 
-<p>Opens the. </p>
+<p>Opens the public FIFO. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fifo_name</td><td></td></tr>
+    <tr><td class="paramname">fifo_name</td><td>The name of the FIFO </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int The FIFO file descriptor </dd></dl>
 
 </div>
 </div>
@@ -223,6 +349,33 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clien
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aff6c714566dd1f4db8dd5720311ed5d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff6c714566dd1f4db8dd5720311ed5d7">&#9670;&nbsp;</a></span>request_handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * request_handler </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sends a request to the server and waits for the response. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arg</td><td>Pointer to the request sequential number </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void* Returns a null pointer </dd></dl>
 
 </div>
 </div>

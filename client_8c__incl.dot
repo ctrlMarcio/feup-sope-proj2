@@ -22,9 +22,11 @@ digraph "/home/runner/work/feup-sope-proj2/feup-sope-proj2/src/client/client.c"
   Node0 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node9 [label="fcntl.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node0 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node10 [label="../util/error.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$error_8h.html",tooltip="Defines the possible errors. "];
+  Node10 [label="time.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node0 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node11 [label="../util/utils.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$utils_8h_source.html"];
-  Node11 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node11 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="../util/error.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$error_8h.html",tooltip="Defines the possible errors. "];
+  Node0 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="../util/utils.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$utils_8h_source.html"];
+  Node12 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

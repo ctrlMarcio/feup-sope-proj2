@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['setup_5falarm',['setup_alarm',['../client_8c.html#a0a1e0b57c33ce058cf48c5c762f7e018',1,'client.c']]]
+  ['open_5fprivate_5ffifo',['open_private_fifo',['../client_8c.html#a6d52ad6ade5bad2abcebc5984940478d',1,'open_private_fifo(char *fifo_name):&#160;client.c'],['../server_8h.html#a6d52ad6ade5bad2abcebc5984940478d',1,'open_private_fifo(char *fifo_name):&#160;client.c']]],
+  ['open_5fpublic_5ffifo',['open_public_fifo',['../client_8c.html#a9ac6213dd670c5dbacdf596ad1d982be',1,'client.c']]]
 ];

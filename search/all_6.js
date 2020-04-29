@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['open_5fpublic_5ffifo',['open_public_fifo',['../client_8c.html#a9ac6213dd670c5dbacdf596ad1d982be',1,'client.c']]]
+  ['millis_5fdelay',['MILLIS_DELAY',['../client_8c.html#ab8a963a669332666320bfe3e3be4f601',1,'client.c']]]
 ];

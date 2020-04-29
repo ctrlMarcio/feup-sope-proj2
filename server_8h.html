@@ -120,14 +120,42 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>init_alarm</b> ()</td
 <tr class="memitem:a893f1eeca41592dbbebb170720803f66"><td class="memItemLeft" align="right" valign="top"><a id="a893f1eeca41592dbbebb170720803f66"></a>
 void *&#160;</td><td class="memItemRight" valign="bottom"><b>answer_handler</b> (void *arg)</td></tr>
 <tr class="separator:a893f1eeca41592dbbebb170720803f66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d52ad6ade5bad2abcebc5984940478d"><td class="memItemLeft" align="right" valign="top"><a id="a6d52ad6ade5bad2abcebc5984940478d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>open_private_fifo</b> (char *fifo_name)</td></tr>
+<tr class="memitem:a6d52ad6ade5bad2abcebc5984940478d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a6d52ad6ade5bad2abcebc5984940478d">open_private_fifo</a> (char *fifo_name)</td></tr>
+<tr class="memdesc:a6d52ad6ade5bad2abcebc5984940478d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens an existing private FIFO.  <a href="#a6d52ad6ade5bad2abcebc5984940478d">More...</a><br /></td></tr>
 <tr class="separator:a6d52ad6ade5bad2abcebc5984940478d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Methods related to the server side. </p>
 <dl class="section date"><dt>Date</dt><dd>2020-04-28 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a6d52ad6ade5bad2abcebc5984940478d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d52ad6ade5bad2abcebc5984940478d">&#9670;&nbsp;</a></span>open_private_fifo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int open_private_fifo </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>fifo_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Opens an existing private FIFO. </p>
+<dl class="section warning"><dt>Warning</dt><dd>The FIFO must already exist.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fifo_name</td><td>The name of the FIFO </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int The file descriptor of the FIFO </dd></dl>
+
+</div>
+</div>
 <a id="a498c1ab75c992976e45778129becff18"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a498c1ab75c992976e45778129becff18">&#9670;&nbsp;</a></span>terminate()</h2>
 
