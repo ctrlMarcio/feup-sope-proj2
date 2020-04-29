@@ -21,7 +21,7 @@
 /**
  * @brief   The max duration of a request
  */
-#define MAX_DURATION 2_000
+#define MAX_DURATION 2000
 
 /**
  * @brief   Temporary value of max slots in the bathroom

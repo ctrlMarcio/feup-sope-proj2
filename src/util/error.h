@@ -27,4 +27,9 @@
  */
 #define INIT_ALARM_ERROR 4
 
+/**
+ * @brief   Defines an error when initializing a thread
+ */
+#define INIT_THREAD 5
+
 #endif

@@ -14,6 +14,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <time.h>
 #include "../util/error.h"
 #include "../util/utils.h"
 
@@ -21,6 +22,11 @@
  * @brief   Saves the file descriptor of the public fifo.
  */
 int request_fd;
+
+/**
+ * @brief   The delay, in milliseconds, between each request thread.
+ */
+const int MILLIS_DELAY = 100;
 
 /**
  * @brief   Reads the arguments passed by the terminal.
@@ -55,12 +61,46 @@ void setup_alarm(int nsecs);
 void terminate(int signo);
 
 /**
- * @brief   Opens the 
+ * @brief   Opens the public FIFO.
  * 
- * @param fifo_name 
- * @return int 
+ * @param fifo_name The name of the FIFO
+ * @return int      The FIFO file descriptor
  */
 int open_public_fifo(char *fifo_name);
+
+/**
+ * @brief   Sends a request to the server and waits for the response.
+ * 
+ * @param arg       Pointer to the request sequential number
+ * @return void*    Returns a null pointer
+ */
+void *request_handler(void *arg);
+
+/**
+ * @brief   Creates a private FIFO.
+ * 
+ * @param pid       The process ID
+ * @param tid       The thread ID
+ * @param fifo_name The pointer to the name of the FIFO to save 
+ */
+void create_private_fifo(pid_t pid, pthread_t tid, char *fifo_name);
+
+/**
+ * @brief   Opens an existing private FIFO.
+ * @warning The FIFO must already exist.
+ * 
+ * @param fifo_name The name of the FIFO
+ * @return int      The file descriptor of the FIFO
+ */
+int open_private_fifo(char *fifo_name);
+
+/**
+ * @brief   Closes and destroys the private FIFO.
+ * 
+ * @param fd        The FIFO fd
+ * @param name      The name of the FIFO
+ */
+void destroy_private_fifo(int fd, char *name);
 
 int main(int argc, char *argv[])
 {
@@ -77,10 +117,21 @@ int main(int argc, char *argv[])
     // send sigalarm
     setup_alarm(nsecs);
 
-    while (1) {
-        // TODO send threads
-        printf("running ...\n");    // TEST
-        sleep(1);                   // TEST
+    // setup random seed
+    srand(time(NULL));
+
+    pthread_t thread;
+    unsigned long request_count = 0;
+    while (1)
+    {
+        if (pthread_create(&thread, NULL, request_handler, &request_count))
+        {
+            perror("Creating thread");
+            exit(INIT_THREAD);
+        }
+        request_count++;
+        pthread_detach(thread);
+        usleep(MILLIS_DELAY * 9999999); // usleep is in microseconds
     }
 
     // only for precaution, the regular termination of the program is in the function "terminate"
@@ -139,17 +190,77 @@ void setup_alarm(int nsecs)
 void terminate(int signo)
 {
     close(request_fd);
-    // TODO free resources and delete private fifo
     pthread_exit(0);
 }
 
-int open_public_fifo(char *fifo_name) {
+int open_public_fifo(char *fifo_name)
+{
     int fd = open(fifo_name, O_WRONLY);
 
-    if (fd == -1) {
+    if (fd == -1)
+    {
         fprintf(stderr, "Server unavailable, aborting\n");
         exit(CONNECTION_ERROR);
     }
 
     return fd;
+}
+
+void *request_handler(void *arg)
+{
+    // get values
+    unsigned long i = *(int *)arg;
+    pid_t pid = getpid();
+    pthread_t tid = pthread_self();
+    int dur = rand() % MAX_DURATION;
+    long pl = -1;
+
+    // create FIFO
+    char fifo_name[MAX_FIFO_NAME_SIZE];
+    create_private_fifo(pid, tid, fifo_name);
+
+    // TODO send request
+    printf("Bro I'm just chilling: %ld\n", i); // TEST
+
+    // open FIFO
+    int fd = open_private_fifo(fifo_name);
+
+    // TODO receive response
+
+    // destroy FIFO
+    destroy_private_fifo(fd, fifo_name);
+
+
+    return NULL;
+}
+
+void create_private_fifo(pid_t pid, pthread_t tid, char *fifo_name)
+{
+    sprintf(fifo_name, "%s%d.%ld", FIFO_FOLDER, pid, tid);
+
+    if (mkfifo(fifo_name, FIFO_PERMS) < 0)
+    {
+        perror("Create private FIFO");
+        exit(FIFO_CREATION_ERROR);
+    }
+}
+
+int open_private_fifo(char *fifo_name)
+{
+    int fd;
+
+    if ((fd = open(fifo_name, O_RDONLY)) == -1)
+    {
+        perror("Open private FIFO");
+        unlink(fifo_name);
+        exit(FIFO_CREATION_ERROR);
+    }
+
+    return fd;
+}
+
+void destroy_private_fifo(int fd, char *name)
+{
+    close(fd);
+    unlink(name);
 }
