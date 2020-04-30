@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Automated access to bathrooms: /home/runner/work/feup-sope-proj2/feup-sope-proj2/src/server/server.h File Reference</title>
+<title>Automated access to bathrooms: /home/runner/work/feup-sope-proj2/feup-sope-proj2/src/server/server.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,59 +64,56 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">server.h File Reference</div>  </div>
+<div class="title">server.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Methods related to the server side.  
+<p>Executes the operations related to server sided problems.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;sys/types.h&gt;</code><br />
-<code>#include &lt;sys/stat.h&gt;</code><br />
-<code>#include &lt;unistd.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;signal.h&gt;</code><br />
-<code>#include &lt;pthread.h&gt;</code><br />
-<code>#include &lt;fcntl.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="error_8h_source.html">../util/error.h</a>&quot;</code><br />
-<code>#include &quot;../util/utils.h&quot;</code><br />
-<code>#include &quot;../util/message.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="server_8h_source.html">server.h</a>&quot;</code><br />
+<code>#include &quot;server_fifo.c&quot;</code><br />
+<code>#include &quot;server_thread.c&quot;</code><br />
+<code>#include &quot;server_arguments.c&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
-Include dependency graph for server.h:</div>
+Include dependency graph for server.c:</div>
 <div class="dyncontent">
-<div class="center"><img src="server_8h__incl.png" border="0" usemap="#_2home_2runner_2work_2feup-sope-proj2_2feup-sope-proj2_2src_2server_2server_8h" alt=""/></div>
+<div class="center"><img src="server_8c__incl.png" border="0" usemap="#_2home_2runner_2work_2feup-sope-proj2_2feup-sope-proj2_2src_2server_2server_8c" alt=""/></div>
 <!-- MAP 0 -->
 </div>
-</div><div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><img src="server_8h__dep__incl.png" border="0" usemap="#_2home_2runner_2work_2feup-sope-proj2_2feup-sope-proj2_2src_2server_2server_8hdep" alt=""/></div>
-<!-- MAP 1 -->
-</div>
-</div>
-<p><a href="server_8h_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab40cd0fe6756bfa33eba331c84e3ac4a"><td class="memItemLeft" align="right" valign="top"><a id="ab40cd0fe6756bfa33eba331c84e3ac4a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>read_arguments</b> (int argc, char *argv[], int *number_of_seconds, char *<a class="el" href="server_8c.html#a20e6bbcf9912d6b3f19be5c936ff3dea">fifoname</a>)</td></tr>
-<tr class="separator:ab40cd0fe6756bfa33eba331c84e3ac4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a498c1ab75c992976e45778129becff18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a498c1ab75c992976e45778129becff18">terminate</a> (int signo)</td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top"><a id="a0ddf1224851353fc92bfbff6f499fa97"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (int argc, char *argv[])</td></tr>
+<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a498c1ab75c992976e45778129becff18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#a498c1ab75c992976e45778129becff18">terminate</a> (int signo)</td></tr>
 <tr class="memdesc:a498c1ab75c992976e45778129becff18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Terminates the program.  <a href="#a498c1ab75c992976e45778129becff18">More...</a><br /></td></tr>
 <tr class="separator:a498c1ab75c992976e45778129becff18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acad184a24e8a7a851a354df704fd2f89"><td class="memItemLeft" align="right" valign="top"><a id="acad184a24e8a7a851a354df704fd2f89"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>init_alarm</b> ()</td></tr>
 <tr class="separator:acad184a24e8a7a851a354df704fd2f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeca8c1734ba3c808c9051fbcbeaa871e"><td class="memItemLeft" align="right" valign="top"><a id="aeca8c1734ba3c808c9051fbcbeaa871e"></a>
-long&#160;</td><td class="memItemRight" valign="bottom"><b>get_free_place</b> ()</td></tr>
-<tr class="separator:aeca8c1734ba3c808c9051fbcbeaa871e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a36f7b6be7108281af77939ceaec42fd6"><td class="memItemLeft" align="right" valign="top"><a id="a36f7b6be7108281af77939ceaec42fd6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#a36f7b6be7108281af77939ceaec42fd6">running</a> = 1</td></tr>
+<tr class="memdesc:a36f7b6be7108281af77939ceaec42fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag that represents the state of the server listener. <br /></td></tr>
+<tr class="separator:a36f7b6be7108281af77939ceaec42fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dfd0647aaddea797186dec83ead8d72"><td class="memItemLeft" align="right" valign="top"><a id="a3dfd0647aaddea797186dec83ead8d72"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#a3dfd0647aaddea797186dec83ead8d72">public_fifo_fd</a></td></tr>
+<tr class="memdesc:a3dfd0647aaddea797186dec83ead8d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">The file descriptor of the public fifo. <br /></td></tr>
+<tr class="separator:a3dfd0647aaddea797186dec83ead8d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20e6bbcf9912d6b3f19be5c936ff3dea"><td class="memItemLeft" align="right" valign="top"><a id="a20e6bbcf9912d6b3f19be5c936ff3dea"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#a20e6bbcf9912d6b3f19be5c936ff3dea">fifoname</a> [MAX_FIFO_NAME_SIZE] = {0}</td></tr>
+<tr class="memdesc:a20e6bbcf9912d6b3f19be5c936ff3dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the public fifo. <br /></td></tr>
+<tr class="separator:a20e6bbcf9912d6b3f19be5c936ff3dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Methods related to the server side. </p>
-<dl class="section date"><dt>Date</dt><dd>2020-04-28 </dd></dl>
+<div class="textblock"><p>Executes the operations related to server sided problems. </p>
+<dl class="section date"><dt>Date</dt><dd>2020-04-30 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a498c1ab75c992976e45778129becff18"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a498c1ab75c992976e45778129becff18">&#9670;&nbsp;</a></span>terminate()</h2>

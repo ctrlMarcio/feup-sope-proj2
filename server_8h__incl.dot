@@ -27,4 +27,13 @@ digraph "/home/runner/work/feup-sope-proj2/feup-sope-proj2/src/server/server.h"
   Node11 [label="../util/utils.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$utils_8h_source.html"];
   Node11 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node11 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="../util/message.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$message_8h_source.html"];
+  Node12 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="time.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node12 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }
