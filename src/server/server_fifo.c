@@ -27,7 +27,6 @@ int init_public_fifo(char *fifoname)
 
 void close_public_fifo(int fifo_fd, char *fifoname)
 {
-    close(fifo_fd);
     unlink(fifoname);
 }
 

@@ -23,14 +23,25 @@ int main(int argc, char *argv[])
     query request;
     while (running)
     {
-        read(public_fifo_fd, &request, sizeof(query));
-
-        // TODO: RECVD
-        pthread_t tid;
-        pthread_create(&tid, NULL, answer_handler, &request);
-        pthread_detach(tid);
+        while(read(public_fifo_fd, &request, sizeof(query)) > 0)
+        {
+            // TODO: RECVD
+            pthread_t tid;
+            pthread_create(&tid, NULL, answer_handler, &request);
+            pthread_detach(tid);
+        }
     }
-
+    int counter = 0;
+    while(read(public_fifo_fd, &request, sizeof(query)) > 0)
+    {
+        // TODO: 2LATE
+        pthread_t tid;
+        pthread_create(&tid, NULL, answer_handler, &request);  // TODO change thread handler
+        pthread_detach(tid);
+        ++counter;
+    }
+    printf("rest %d\n", counter);
+    close(public_fifo_fd);
     pthread_exit(0);
 }
 
