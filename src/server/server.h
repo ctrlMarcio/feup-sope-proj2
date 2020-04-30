@@ -18,6 +18,7 @@
 
 #include "../util/error.h"
 #include "../util/utils.h"
+#include "../util/message.h"
 
 void read_arguments(int argc, char *argv[], int *number_of_seconds, char *fifoname);
 
@@ -25,6 +26,6 @@ void terminate(int signo);
 
 void init_alarm();
 
-void *answer_handler(void *arg);
+long get_free_place();
 
 #endif

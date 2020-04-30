@@ -25,9 +25,13 @@ int init_public_fifo(char *fifoname)
     return fd;
 }
 
-void close_public_fifo(int fifo_fd, char *fifoname)
+void unlink_public_fifo(char *fifoname)
 {
     unlink(fifoname);
+}
+
+void close_public_fifo(int fd){
+    close(fd);
 }
 
 int open_private_fifo(char *fifo_name)

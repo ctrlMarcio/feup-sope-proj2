@@ -1,16 +1,33 @@
+/**
+ * @file    server.c   
+ * @brief   Executes the operations related to server sided problems. 
+ * @date    2020-04-30
+ */
 #include "server.h"
 #include "server_fifo.c"
 #include "server_thread.c"
 #include "server_arguments.c"
 
+/**
+ * @brief   Flag that represents the state of the server listener
+ */
 bool running = 1;
 
+/**
+ * @brief   The file descriptor of the public fifo
+ */
 int public_fifo_fd;
 
-char fifoname[MAX_FIFO_NAME_SIZE];
+/**
+ * @brief   The name of the public fifo
+ */
+char fifoname[MAX_FIFO_NAME_SIZE] = {0};
 
 int main(int argc, char *argv[])
 {
+    /*
+     * Argument and alarm handling and FIFO creation
+     */
     int number_of_seconds;
 
     read_arguments(argc, argv, &number_of_seconds, fifoname);
@@ -20,27 +37,36 @@ int main(int argc, char *argv[])
 
     public_fifo_fd = init_public_fifo(fifoname);
 
+    /*
+     * Request handling
+     */
     query request;
     while (running)
     {
-        while(read(public_fifo_fd, &request, sizeof(query)) > 0)
+        while (read(public_fifo_fd, &request, sizeof(query)) > 0)
         {
-            // TODO: RECVD
+            register_operation(RECVD, &request);
+            printf("The server has received a request\n");
             pthread_t tid;
             pthread_create(&tid, NULL, answer_handler, &request);
             pthread_detach(tid);
         }
     }
-    int counter = 0;
-    while(read(public_fifo_fd, &request, sizeof(query)) > 0)
+
+    /*
+     * Too late request handling. Empties the FIFO buffer
+     */
+    while (read(public_fifo_fd, &request, sizeof(query)) > 0)
     {
-        // TODO: 2LATE
+        register_operation(TOOLATE, &request);
         pthread_t tid;
-        pthread_create(&tid, NULL, answer_handler, &request);  // TODO change thread handler
+        pthread_create(&tid, NULL, late_answer_handler, &request);
         pthread_detach(tid);
-        ++counter;
     }
-    printf("rest %d\n", counter);
+
+    /*
+     * Closes, finally, the public FIFO
+     */
     close(public_fifo_fd);
     pthread_exit(0);
 }
@@ -48,7 +74,7 @@ int main(int argc, char *argv[])
 void terminate(int signo)
 {
     running = false;
-    close_public_fifo(public_fifo_fd, fifoname);
+    unlink_public_fifo(fifoname);
 }
 
 void init_alarm()
