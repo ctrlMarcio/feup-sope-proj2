@@ -7,7 +7,7 @@ COMPILATION_EXTENSIONS = -Wall -g -o
 LINKED_LIBRARIES = -lm -lrt -lpthread
 
 # The names of the .c files to compile
-CLIENT_FILES = $(SRC_DIR)/client/client.c # separated by space
+CLIENT_FILES = $(SRC_DIR)/client/client.c $(SRC_DIR)/client/client_arguments.c $(SRC_DIR)/client/client_fifo.c $(SRC_DIR)/client/client_thread.c # separated by space
 SERVER_FILES = $(SRC_DIR)/server/server.c # separated by space
 
 make: ${FILES}
