@@ -29,7 +29,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/Q1",
-            "args": ["-t", "20", "/tmp/fifoname"],
+            "args": ["-t", "20", "fifoname"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

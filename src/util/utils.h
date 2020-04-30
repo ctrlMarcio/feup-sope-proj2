@@ -8,6 +8,10 @@
 #include <sys/types.h>
 #include <pthread.h>
 
+typedef int bool;
+#define true 1
+#define false 0
+
 /**
  * @brief   The maximum size allowed for the name of the FIFO.
  */
