@@ -10,5 +10,5 @@ digraph "/home/runner/work/feup-sope-proj2/feup-sope-proj2/src" {
     dir_b7878ad5ecbf2506f4125b9d34c97e45 [shape=box label="util" color="black" fillcolor="white" style="filled" URL="dir_b7878ad5ecbf2506f4125b9d34c97e45.html"];
   }
   dir_075bb3ff235063c77951cd176d15a741->dir_b7878ad5ecbf2506f4125b9d34c97e45 [headlabel="4", labeldistance=1.5 headhref="dir_000002_000003.html"];
-  dir_6908ff505388a07996d238c763adbdab->dir_b7878ad5ecbf2506f4125b9d34c97e45 [headlabel="1", labeldistance=1.5 headhref="dir_000001_000003.html"];
+  dir_6908ff505388a07996d238c763adbdab->dir_b7878ad5ecbf2506f4125b9d34c97e45 [headlabel="3", labeldistance=1.5 headhref="dir_000001_000003.html"];
 }
