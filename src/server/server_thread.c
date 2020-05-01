@@ -35,6 +35,8 @@ void *late_answer_handler(void *arg)
 
     query answer = {request.i, getpid(), pthread_self(), -1, -1};
 
+    register_operation(TOOLATE, &answer);
+
     char private_fifoname[MAX_FIFO_NAME_SIZE];
 
     sprintf(private_fifoname, "/%s/%ld.%ld", FIFO_FOLDER, (long)request.pid, (long)request.tid);

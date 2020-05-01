@@ -35,7 +35,7 @@ typedef int bool;
 /**
  * @brief   The name of the folder where FIFOs are to be interchanged.
  */
-const char *FIFO_FOLDER;
+#define FIFO_FOLDER "/tmp/"
 
 /**
  * @brief   The query struct. This struct is used in both request and answer operations

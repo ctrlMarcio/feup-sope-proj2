@@ -9,6 +9,7 @@
 
 #include "../util/error.h"
 #include "../util/utils.h"
+#include "../util/message.h"
 
 int open_public_fifo(char *fifo_name)
 {

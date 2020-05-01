@@ -8,6 +8,7 @@
 
 #include "client_fifo.h"
 #include "../util/utils.h"
+#include "../util/message.h"
 
 void *request_handler(void *arg)
 {
@@ -26,9 +27,11 @@ void *request_handler(void *arg)
     printf("sent: %ld\n", i); // TEST
     query query = {i, pid, tid, dur, pl};
     write(request_fd, &query, sizeof(query));
+    register_operation(IWANT, &query);
 
     // open FIFO
     int fd = open_private_fifo(fifo_name);
+    register_operation(IAMIN, &query);
 
     // receive response
     read(fd, &query, sizeof(query));
@@ -36,7 +39,7 @@ void *request_handler(void *arg)
 
     // verify if failed
     if (query.dur == -1)
-        printf("LATE\n"); // TODO change with log
+        register_operation(CLOSD, &query);
 
     // destroy FIFO
     destroy_private_fifo(fd, fifo_name);

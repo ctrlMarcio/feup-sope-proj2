@@ -58,7 +58,6 @@ int main(int argc, char *argv[])
      */
     while (read(public_fifo_fd, &request, sizeof(query)) > 0)
     {
-        register_operation(TOOLATE, &request);
         pthread_t tid;
         pthread_create(&tid, NULL, late_answer_handler, &request);
         pthread_detach(tid);
