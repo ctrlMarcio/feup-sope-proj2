@@ -23,4 +23,6 @@ long get_free_place();
 
 void assign_place(long place, query *query);
 
+void destroy_mutex();
+
 #endif

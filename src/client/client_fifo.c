@@ -11,6 +11,7 @@
 #include "../util/utils.h"
 #include "../util/message.h"
 
+
 int open_public_fifo(char *fifo_name)
 {
     int fd = open(fifo_name, O_WRONLY);
@@ -28,7 +29,7 @@ void create_private_fifo(pid_t pid, pthread_t tid, char *fifo_name)
 {
     sprintf(fifo_name, "%s%d.%ld", FIFO_FOLDER, pid, tid);
 
-    if (mkfifo(fifo_name, FIFO_PERMS) < 0)
+    if (mkfifo(fifo_name, FIFO_PERMS) == -1)
     {
         perror("Create private FIFO");
         exit(FIFO_CREATION_ERROR);

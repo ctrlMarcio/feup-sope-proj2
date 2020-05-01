@@ -18,5 +18,4 @@ int request_fd;
  */
 void *request_handler(void *arg);
 
-
 #endif

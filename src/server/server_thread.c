@@ -5,16 +5,22 @@
  */
 long bathroom_places[MAX_PLACES] = {0};
 
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
 void *answer_handler(void *arg)
 {
     query request = *(query *)arg;
 
-    register_operation(ENTER, &request);
-
     // TODO return value check
-    long place = get_free_place();
 
+    pthread_mutex_lock(&mutex);
+
+    long place = get_free_place();
     assign_place(place, &request);
+
+    pthread_mutex_unlock(&mutex);
+
+    register_operation(ENTER, &request);
 
     query answer = {request.i, getpid(), pthread_self(), request.dur, place};
 
@@ -26,7 +32,7 @@ void *answer_handler(void *arg)
 
     usleep(request.dur * 1000);
 
-    register_operation(TIMUP, &answer); // TODO this needs to be discussed
+    register_operation(TIMUP, &answer);
 
     write(private_fifo_fd, &answer, sizeof(query));
 
@@ -67,4 +73,9 @@ long get_free_place()
 void assign_place(long place, query *query)
 {
     bathroom_places[place] = query->i;
+}
+
+void destroy_mutex()
+{
+    pthread_mutex_destroy(&mutex);
 }

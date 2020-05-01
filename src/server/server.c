@@ -23,6 +23,11 @@ int public_fifo_fd;
  */
 char fifoname[MAX_FIFO_NAME_SIZE] = {0};
 
+/**
+ * @brief   The temporary sigint action used in the init_sigint()
+ */
+struct sigaction old_action;
+
 int main(int argc, char *argv[])
 {
     /*
@@ -31,6 +36,8 @@ int main(int argc, char *argv[])
     int number_of_seconds;
 
     read_arguments(argc, argv, &number_of_seconds, fifoname);
+
+    init_sigint();
 
     init_alarm();
     alarm(number_of_seconds);
@@ -65,8 +72,23 @@ int main(int argc, char *argv[])
     /*
      * Closes, finally, the public FIFO
      */
+    destroy_mutex();
     close(public_fifo_fd);
     pthread_exit(0);
+}
+
+void init_alarm()
+{
+    struct sigaction action;
+    action.sa_handler = terminate;
+    sigfillset(&action.sa_mask);
+    action.sa_flags = 0;
+
+    if (sigaction(SIGALRM, &action, NULL) < 0)
+    {
+        fprintf(stderr, "Unable to install alarm handler\n");
+        exit(INIT_ALARM_ERROR);
+    }
 }
 
 void terminate(int signo)
@@ -75,16 +97,19 @@ void terminate(int signo)
     unlink_public_fifo(fifoname);
 }
 
-void init_alarm()
+void init_sigint()
 {
     struct sigaction action;
-    action.sa_handler = &terminate;
-    sigemptyset(&action.sa_mask);
-    action.sa_flags = 0;
+    memset(&action, 0, sizeof(action));
+    action.sa_handler = sigint_handler;
+    sigaction(SIGINT, &action, &old_action);
+}
 
-    if (sigaction(SIGALRM, &action, NULL) < 0)
-    {
-        fprintf(stderr, "Unable to install alarm handler\n");
-        exit(INIT_ALARM_ERROR);
-    }
+void sigint_handler(int signo)
+{
+    sigaction(SIGINT, &old_action, NULL);
+    destroy_mutex();
+    close(public_fifo_fd);
+    unlink_public_fifo(fifoname);
+    kill(0, SIGINT);
 }

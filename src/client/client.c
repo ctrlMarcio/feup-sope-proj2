@@ -25,7 +25,7 @@ const int MILLIS_DELAY = 100;
  * 
  * @param nsecs     The number of seconds to set the alarm to
  */
-void setup_alarm(int nsecs);
+void setup_signals(int nsecs);
 
 /**
  * @brief   Terminates the program.
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     request_fd = open_public_fifo(public_fifo);
 
     // send sigalarm
-    setup_alarm(nsecs);
+    setup_signals(nsecs);
 
     // setup random seed
     srand(time(NULL));
@@ -71,20 +71,27 @@ int main(int argc, char *argv[])
     pthread_exit(0);
 }
 
-void setup_alarm(int nsecs)
+void setup_signals(int nsecs)
 {
     struct sigaction action;
     action.sa_handler = terminate;
     action.sa_flags = 0;
-    sigfillset(&action.sa_mask);
+    sigemptyset(&action.sa_mask);
 
-    sigaction(SIGALRM, &action, NULL);
+    //sigaction(SIGALRM, &action, NULL);
+
+    sigaction(SIGUSR1, &action, NULL);
 
     alarm(nsecs);
+
+    sigset_t set;
+    sigemptyset(&set);
+    pthread_sigmask(SIGPIPE, &set, NULL);    
 }
 
 void terminate(int signo)
 {
+    printf("\n\n\nSIGNO: %d\n", signo);
     close(request_fd);
     pthread_exit(0);
 }
