@@ -34,15 +34,15 @@ void close_public_fifo(int fd){
     close(fd);
 }
 
-int open_private_fifo(char *fifo_name)
-{
-    int fd = open(fifo_name, O_WRONLY);
+int open_private_fifo(char *fifoname, query *query){
+     int fd = open(fifoname, O_WRONLY);
 
     if (fd == -1)
     {
-        fprintf(stderr, "Server unavailable, aborting\n");
+        //fprintf(stderr, "Server unavailable, aborting\n");
+        register_operation(GAVUP, query);
         exit(CONNECTION_ERROR);
     }
 
-    return fd;
+    return fd;   
 }

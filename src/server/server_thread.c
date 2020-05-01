@@ -1,26 +1,32 @@
 #include "server_thread.h"
 
+/**
+ * @brief   The bathroom places. Each place holds the i value of the request
+ */
+long bathroom_places[MAX_PLACES] = {0};
+
 void *answer_handler(void *arg)
 {
     query request = *(query *)arg;
-    
+
     register_operation(ENTER, &request);
 
-    // todo return value check
-    //long place = get_free_place();
+    // TODO return value check
+    long place = get_free_place();
 
-    query answer = {request.i, getpid(), pthread_self(), request.dur, 1};
+    assign_place(place, &request);
+
+    query answer = {request.i, getpid(), pthread_self(), request.dur, place};
 
     char private_fifoname[MAX_FIFO_NAME_SIZE];
 
     sprintf(private_fifoname, "/%s/%ld.%ld", FIFO_FOLDER, (long)request.pid, (long)request.tid);
 
-    // todo GAVUP might be here when fd < 0
-    int private_fifo_fd = open_private_fifo(private_fifoname);
+    int private_fifo_fd = open_private_fifo(private_fifoname, &request);
 
     usleep(request.dur * 1000);
 
-    register_operation(TIMUP, &answer); // todo this needs to be discussed
+    register_operation(TIMUP, &answer); // TODO this needs to be discussed
 
     write(private_fifo_fd, &answer, sizeof(query));
 
@@ -41,12 +47,24 @@ void *late_answer_handler(void *arg)
 
     sprintf(private_fifoname, "/%s/%ld.%ld", FIFO_FOLDER, (long)request.pid, (long)request.tid);
 
-    // todo GAVUP might be here when fd < 0
-    int private_fifo_fd = open_private_fifo(private_fifoname);
+    int private_fifo_fd = open_private_fifo(private_fifoname, &request);
 
     write(private_fifo_fd, &answer, sizeof(query));
 
     close(private_fifo_fd);
 
     return NULL;
+}
+
+long get_free_place()
+{
+    for (long i = 0; i < MAX_PLACES; ++i)
+        if (bathroom_places[i] == 0)
+            return i;
+    return -1;
+}
+
+void assign_place(long place, query *query)
+{
+    bathroom_places[place] = query->i;
 }

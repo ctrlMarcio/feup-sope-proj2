@@ -19,4 +19,8 @@ void *answer_handler(void *arg);
 
 void *late_answer_handler(void *arg);
 
+long get_free_place();
+
+void assign_place(long place, query *query);
+
 #endif

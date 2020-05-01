@@ -26,6 +26,4 @@ void terminate(int signo);
 
 void init_alarm();
 
-long get_free_place();
-
 #endif

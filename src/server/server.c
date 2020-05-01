@@ -1,6 +1,6 @@
 /**
  * @file    server.c   
- * @brief   Executes the operations related to server sided problems. 
+ * @brief   Executes the operations related to server sided problems
  * @date    2020-04-30
  */
 #include "server.h"
@@ -46,7 +46,6 @@ int main(int argc, char *argv[])
         while (read(public_fifo_fd, &request, sizeof(query)) > 0)
         {
             register_operation(RECVD, &request);
-            printf("The server has received a request\n");
             pthread_t tid;
             pthread_create(&tid, NULL, answer_handler, &request);
             pthread_detach(tid);

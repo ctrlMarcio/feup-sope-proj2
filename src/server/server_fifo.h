@@ -10,6 +10,7 @@
 
 #include "../util/error.h"
 #include "../util/utils.h"
+#include "../util/message.h"
 
 int init_public_fifo(char *fifoname);
 
@@ -17,6 +18,6 @@ void unlink_public_fifo(char *fifoname);
 
 void close_public_fifo(int fd);
 
-int open_private_fifo(char *fifo_name);
+int open_private_fifo(char *fifoname, query *query);
 
 #endif
