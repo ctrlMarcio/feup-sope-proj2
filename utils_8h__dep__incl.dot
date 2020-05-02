@@ -1,0 +1,23 @@
+digraph "/home/runner/work/feup-sope-proj2/feup-sope-proj2/src/util/utils.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node3 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/util/utils.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/client/client.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$client_8c.html",tooltip="Runs the main client operations. "];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/util/message.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$message_8h.html",tooltip="Standard output and error message handling. "];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/server/server.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server_8h.html",tooltip="Methods related to the server side. "];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/server/server.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server_8c.html",tooltip="Executes the operations related to server sided problems. "];
+  Node5 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/server/server_fifo.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server__fifo_8h.html",tooltip="Methods related to FIFO handling. "];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/server/server\l_thread.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server__thread_8h.html",tooltip="Methods related to thread handling. "];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/server/server\l_arguments.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server__arguments_8h.html",tooltip="Methods related to argument handling. "];
+}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['setup_5fsignals',['setup_signals',['../client_8c.html#aa7cf6f40dbd3995813e1b3769b001f07',1,'client.c']]]
+  ['get_5ffree_5fplace',['get_free_place',['../server__thread_8h.html#aeca8c1734ba3c808c9051fbcbeaa871e',1,'server_thread.c']]]
 ];

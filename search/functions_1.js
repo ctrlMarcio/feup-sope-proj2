@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['destroy_5fprivate_5ffifo',['destroy_private_fifo',['../client__fifo_8h.html#a6fd5ba31240a617f179494157d17da49',1,'client_fifo.c']]]
+  ['create_5fprivate_5ffifo',['create_private_fifo',['../client__fifo_8h.html#a41a1d865d8e6aa2c5024f7e47d7b9aab',1,'client_fifo.c']]]
 ];

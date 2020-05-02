@@ -7,5 +7,5 @@ digraph "/home/runner/work/feup-sope-proj2/feup-sope-proj2/src/client" {
   dir_6908ff505388a07996d238c763adbdab [shape=box, label="client", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_6908ff505388a07996d238c763adbdab.html"];
   }
   dir_b7878ad5ecbf2506f4125b9d34c97e45 [shape=box label="util" URL="dir_b7878ad5ecbf2506f4125b9d34c97e45.html"];
-  dir_6908ff505388a07996d238c763adbdab->dir_b7878ad5ecbf2506f4125b9d34c97e45 [headlabel="3", labeldistance=1.5 headhref="dir_000001_000003.html"];
+  dir_6908ff505388a07996d238c763adbdab->dir_b7878ad5ecbf2506f4125b9d34c97e45 [headlabel="9", labeldistance=1.5 headhref="dir_000001_000003.html"];
 }

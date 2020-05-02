@@ -90,16 +90,18 @@ Functions</h2></td></tr>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acad184a24e8a7a851a354df704fd2f89"><td class="memItemLeft" align="right" valign="top"><a id="acad184a24e8a7a851a354df704fd2f89"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>init_alarm</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#acad184a24e8a7a851a354df704fd2f89">init_alarm</a> ()</td></tr>
+<tr class="memdesc:acad184a24e8a7a851a354df704fd2f89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the program alarm. <br /></td></tr>
 <tr class="separator:acad184a24e8a7a851a354df704fd2f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a498c1ab75c992976e45778129becff18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#a498c1ab75c992976e45778129becff18">terminate</a> (int signo)</td></tr>
-<tr class="memdesc:a498c1ab75c992976e45778129becff18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Terminates the program.  <a href="#a498c1ab75c992976e45778129becff18">More...</a><br /></td></tr>
+<tr class="memdesc:a498c1ab75c992976e45778129becff18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alarm handler. Removes the program resources.  <a href="#a498c1ab75c992976e45778129becff18">More...</a><br /></td></tr>
 <tr class="separator:a498c1ab75c992976e45778129becff18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02cfce41a5c143cab9418b290f190f89"><td class="memItemLeft" align="right" valign="top"><a id="a02cfce41a5c143cab9418b290f190f89"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>init_sigint</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#a02cfce41a5c143cab9418b290f190f89">init_sigint</a> ()</td></tr>
+<tr class="memdesc:a02cfce41a5c143cab9418b290f190f89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the SIGINT handling. <br /></td></tr>
 <tr class="separator:a02cfce41a5c143cab9418b290f190f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b515337891f74ebd79cb307db16bf33"><td class="memItemLeft" align="right" valign="top"><a id="a4b515337891f74ebd79cb307db16bf33"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sigint_handler</b> (int signo)</td></tr>
+<tr class="memitem:a4b515337891f74ebd79cb307db16bf33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#a4b515337891f74ebd79cb307db16bf33">sigint_handler</a> (int signo)</td></tr>
+<tr class="memdesc:a4b515337891f74ebd79cb307db16bf33"><td class="mdescLeft">&#160;</td><td class="mdescRight">SIGINT handler. Removes the program resource before stopping.  <a href="#a4b515337891f74ebd79cb307db16bf33">More...</a><br /></td></tr>
 <tr class="separator:a4b515337891f74ebd79cb307db16bf33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -113,18 +115,44 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serve
 <tr class="memdesc:a3dfd0647aaddea797186dec83ead8d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">The file descriptor of the public fifo. <br /></td></tr>
 <tr class="separator:a3dfd0647aaddea797186dec83ead8d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20e6bbcf9912d6b3f19be5c936ff3dea"><td class="memItemLeft" align="right" valign="top"><a id="a20e6bbcf9912d6b3f19be5c936ff3dea"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#a20e6bbcf9912d6b3f19be5c936ff3dea">fifoname</a> [MAX_FIFO_NAME_SIZE] = {0}</td></tr>
+char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#a20e6bbcf9912d6b3f19be5c936ff3dea">fifoname</a> [<a class="el" href="utils_8h.html#a27debafe5383ef9df7c7fc82b069680e">MAX_FIFO_NAME_SIZE</a>] = {0}</td></tr>
 <tr class="memdesc:a20e6bbcf9912d6b3f19be5c936ff3dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the public fifo. <br /></td></tr>
 <tr class="separator:a20e6bbcf9912d6b3f19be5c936ff3dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5da585c5678d80738700eaba39479f24"><td class="memItemLeft" align="right" valign="top"><a id="a5da585c5678d80738700eaba39479f24"></a>
 struct sigaction&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8c.html#a5da585c5678d80738700eaba39479f24">old_action</a></td></tr>
-<tr class="memdesc:a5da585c5678d80738700eaba39479f24"><td class="mdescLeft">&#160;</td><td class="mdescRight">The temporary sigint action used in the init_sigint() <br /></td></tr>
+<tr class="memdesc:a5da585c5678d80738700eaba39479f24"><td class="mdescLeft">&#160;</td><td class="mdescRight">The temporary sigint action used in the <a class="el" href="server_8c.html#a02cfce41a5c143cab9418b290f190f89" title="Initializes the SIGINT handling. ">init_sigint()</a> <br /></td></tr>
 <tr class="separator:a5da585c5678d80738700eaba39479f24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Executes the operations related to server sided problems. </p>
 <dl class="section date"><dt>Date</dt><dd>2020-04-30 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a4b515337891f74ebd79cb307db16bf33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b515337891f74ebd79cb307db16bf33">&#9670;&nbsp;</a></span>sigint_handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sigint_handler </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>signo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SIGINT handler. Removes the program resource before stopping. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">signo</td><td>signo the signal number </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a498c1ab75c992976e45778129becff18"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a498c1ab75c992976e45778129becff18">&#9670;&nbsp;</a></span>terminate()</h2>
 
@@ -141,7 +169,14 @@ struct sigaction&#160;</td><td class="memItemRight" valign="bottom"><a class="el
       </table>
 </div><div class="memdoc">
 
-<p>Terminates the program. </p>
+<p>Alarm handler. Removes the program resources. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">signo</td><td>the signal number</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Alarm handler. Removes the program resources.</p>
 <p>Is called when SIGALARM is received. Can be called by any signal.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
