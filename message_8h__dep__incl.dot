@@ -5,10 +5,8 @@ digraph "/home/runner/work/feup-sope-proj2/feup-sope-proj2/src/util/message.h"
   Node9 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/util/message.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
   Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node10 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/server/server.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server_8h.html",tooltip="Methods related to the server side. "];
-  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node11 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/server/server.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server_8c.html",tooltip="Executes the operations related to server sided problems. "];
-  Node9 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node12 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/server/server_fifo.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server__fifo_8h.html",tooltip="Methods related to FIFO handling. "];
-  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node13 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/server/server\l_thread.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server__thread_8h.html",tooltip="Methods related to thread handling. "];
+  Node9 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/server/server_fifo.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server__fifo_8h.html",tooltip="Methods related to FIFO handling. "];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="/home/runner/work/feup\l-sope-proj2/feup-sope\l-proj2/src/server/server\l_thread.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server__thread_8h.html",tooltip="Methods related to thread handling. "];
 }
