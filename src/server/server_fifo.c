@@ -9,13 +9,13 @@ int init_public_fifo(char *fifoname)
     }
     else
     {
-        printf("FIFO '%s' successfully created\n", fifoname);
+        fprintf(stderr, "FIFO '%s' successfully created\n", fifoname);
     }
 
     int fd;
 
     if ((fd = open(fifoname, O_RDONLY)) != -1)
-        printf("FIFO '%s' [%d] openned in READONLY mode\n", fifoname, fd);
+        fprintf(stderr, "FIFO '%s' [%d] openned in READONLY mode\n", fifoname, fd);
     else
     {
         perror("Could not open FIFO");
@@ -25,24 +25,21 @@ int init_public_fifo(char *fifoname)
     return fd;
 }
 
-void unlink_public_fifo(char *fifoname)
+void close_public_fifo(int fd)
 {
-    unlink(fifoname);
-}
-
-void close_public_fifo(int fd){
     close(fd);
 }
 
-int open_private_fifo(char *fifoname, query *query){
-     int fd = open(fifoname, O_WRONLY);
+int open_private_fifo(char *fifoname, query *query)
+{
+    int fd = open(fifoname, O_WRONLY);
 
     if (fd == -1)
     {
-        //fprintf(stderr, "Server unavailable, aborting\n");
+        fprintf(stderr, "Server unavailable, aborting\n");
         register_operation(GAVUP, query);
         exit(CONNECTION_ERROR);
     }
 
-    return fd;   
+    return fd;
 }

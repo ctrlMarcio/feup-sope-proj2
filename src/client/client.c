@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
         if (pthread_create(&thread, NULL, request_handler, &request_count))
         {
             perror("Creating thread");
-            exit(INIT_THREAD);
+            exit(INIT_THREAD_ERROR);
         }
         request_count++;
         pthread_detach(thread);

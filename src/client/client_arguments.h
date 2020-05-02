@@ -1,5 +1,7 @@
 /**
- * @brief Treats the client's arguments.
+ * @file    client_fifo.h
+ * @brief   Treats the client's arguments.
+ * @date    2020-04-30
  */
 #ifndef CLIENT_ARGUMENTS_H
 #define CLIENT_ARGUMENTS_H

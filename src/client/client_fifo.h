@@ -3,7 +3,6 @@
  * @brief   Handles the client's FIFO's access.
  * @date    2020-04-30
  */
-
 #ifndef CLIENT_FIFO_H
 #define CLIENT_FIFO_H
 

@@ -11,7 +11,7 @@ void *answer_handler(void *arg)
 {
     query request = *(query *)arg;
 
-    // TODO return value check
+    // TODO return value check, 2nd part only
 
     pthread_mutex_lock(&mutex);
 

@@ -5,7 +5,17 @@ if [ "$#" -ne 3 ]; then
     exit 1
 fi
 
-(rm q1.err & rm q1.log & rm u1.err & rm u1.log) 2> /dev/null # they are overwritten below, but better safe than sorry
+BASEDIR=$(dirname $0)
+cd $BASEDIR
+
+make --directory=.. > /dev/null 2> /dev/null
+
+if [ "$?" -eq 2 ]; then
+    echo "Fatal error. Could not compile..."
+    exit 2
+fi
+
+(rm q1.err && rm q1.log && rm u1.err && rm u1.log) 2> /dev/null # they are overwritten below, but better safe than sorry
 
 ../bin/Q1 -t $1 $3 > q1.log 2> q1.err & pid1=$!
 ../bin/U1 -t $2 $3 > u1.log 2> u1.err & pid2=$!

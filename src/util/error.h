@@ -3,7 +3,6 @@
  * @brief   Defines the possible errors.
  * @date    2020-04-27
  */
-
 #ifndef ERROR_H
 #define ERROR_H
 
@@ -30,6 +29,6 @@
 /**
  * @brief   Defines an error when initializing a thread
  */
-#define INIT_THREAD 5
+#define INIT_THREAD_ERROR 5
 
 #endif

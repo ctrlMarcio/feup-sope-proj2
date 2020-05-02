@@ -94,7 +94,7 @@ void init_alarm()
 void terminate(int signo)
 {
     running = false;
-    unlink_public_fifo(fifoname);
+    unlink(fifoname);
 }
 
 void init_sigint()
@@ -110,6 +110,6 @@ void sigint_handler(int signo)
     sigaction(SIGINT, &old_action, NULL);
     destroy_mutex();
     close(public_fifo_fd);
-    unlink_public_fifo(fifoname);
+    unlink(fifoname);
     kill(0, SIGINT);
 }

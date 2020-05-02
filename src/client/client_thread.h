@@ -1,7 +1,8 @@
 /**
- * @brief Handles the threads for the client.* 
+ * @file    client_fifo.h
+ * @brief   Handles the threads for the client.
+ * @date    2020-04-30
  */
-
 #ifndef CLIENT_THREAD_H
 #define CLIENT_THREAD_H
 

@@ -7,5 +7,5 @@
 !/.vscode/tasks.json
 
 # test files
-/test/*
+**/test/*
 !/test/test_runner.sh

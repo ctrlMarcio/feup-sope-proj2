@@ -1,6 +1,6 @@
 /**
  * @file    server.h
- * @brief   Methods related to the server side 
+ * @brief   Methods related to the server side.
  * @date    2020-04-28
  */
 #ifndef SERVER_H
@@ -20,16 +20,33 @@
 #include "../util/utils.h"
 #include "../util/message.h"
 
-void read_arguments(int argc, char *argv[], int *number_of_seconds, char *fifoname);
-
+/**
+ * @brief   Initializes the program alarm.
+ */
 void init_alarm();
 
+/**
+ * @brief   Alarm handler. Removes the program resources.
+ * 
+ * @param signo the signal number
+ */
 void terminate(int signo);
 
+/**
+ * @brief   Destroys the public FIFO.
+ */
 void destroy_fifo();
 
+/**
+ * @brief   Initializes the SIGINT handling.
+ */
 void init_sigint();
 
+/**
+ * @brief   SIGINT handler. Removes the program resource before stopping.
+ * 
+ * @param signo signo the signal number
+ */
 void sigint_handler(int signo);
 
 #endif
