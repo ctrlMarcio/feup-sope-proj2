@@ -16,7 +16,7 @@ jobs:
       - name: Build project # This would actually build your project, using zip for an example artifact
         run: |
           make
-          zip --junk-paths bathroom-access-manager bin README.md
+          zip --junk-paths -r bathroom-access-manager bin README.md
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
