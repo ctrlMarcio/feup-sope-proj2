@@ -1,8 +1,8 @@
 # feup-sope-proj2
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ctrlmarcio/feup-sope-proj2/C%20CI%20Build?logo=github)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ctrlmarcio/feup-sope-proj2/C%20CI%20Documentation?label=documentation&logo=github)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/ctrlmarcio/feup-sope-proj2?logo=github)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ctrlmarcio/feup-sope-proj2/C%20CI%20Build?logo=github)](https://github.com/ctrlMarcio/feup-sope-proj2/actions?query=workflow%3A%22C+CI+Build%22)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ctrlmarcio/feup-sope-proj2/C%20CI%20Documentation?label=documentation&logo=github)](https://github.com/ctrlMarcio/feup-sope-proj2/actions?query=workflow%3A%22C+CI+Documentation%22)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/ctrlmarcio/feup-sope-proj2?logo=github)](https://github.com/ctrlMarcio/feup-sope-proj2/actions?query=workflow%3A%22C+CI+Release%22)
 [![GitHub license](https://img.shields.io/github/license/ctrlMarcio/feup-sope-proj2?color=blue)](https://github.com/ctrlMarcio/feup-sope-proj2/blob/master/LICENSE)
 
 This repository comprises the second project of the Operating Systems course unit project. The goal was to create a solution for a virtual access to a bathroom via FIFOs and threads.
@@ -49,6 +49,10 @@ To run the server program use:
 
 - **number of seconds**, the number of seconds that the program must receive requests;
 - **FIFO name**, the name of the public FIFO.
+
+### Note
+
+The FIFOs are stored in the **/tmp/** directory of the OS.
 
 ### Exit codes
 

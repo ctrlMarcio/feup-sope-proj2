@@ -1,5 +1,5 @@
 /**
- * @file    client_fifo.h
+ * @file    client_thread.h
  * @brief   Handles the threads for the client.
  * @date    2020-04-30
  */

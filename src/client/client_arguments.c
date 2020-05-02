@@ -11,13 +11,13 @@ int read_args(int argc, char *argv[])
 {
     if (argc != 4)
     {
-        fprintf(stderr, "Usage: %s -t <nsecs> fifoname\n", argv[0]);
+        fprintf(stderr, "Usage: %s -t <number of seconds> <fifoname>\n", argv[0]);
         exit(ARGS_ERROR);
     }
 
     if (strcmp(argv[1], "-t"))
     {
-        fprintf(stderr, "Usage: %s -t <nsecs> fifoname\n", argv[0]);
+        fprintf(stderr, "Usage: %s -t <number of seconds> <fifoname>\n", argv[0]);
         exit(ARGS_ERROR);
     }
 
@@ -25,7 +25,7 @@ int read_args(int argc, char *argv[])
     int nsecs = atoi(argv[2]);
     if (nsecs <= 0)
     {
-        fprintf(stderr, "Invalid nsecs\n");
+        fprintf(stderr, "The number of seconds must be a number greater than 0\n");
         exit(ARGS_ERROR);
     }
 
@@ -36,7 +36,7 @@ void read_fifo_name(char *dst, char *fifo_name)
 {
     if (!strcmp(fifo_name, "..") || !strcmp(fifo_name, "."))
     {
-        fprintf(stderr, "Invalid FIFO name\n");
+        fprintf(stderr, "The FIFO name is invalid\n");
         exit(ARGS_ERROR);
     }
 

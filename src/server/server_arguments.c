@@ -18,13 +18,13 @@ void read_arguments(int argc, char *argv[], int *number_of_seconds, char *fifona
 
     if (*number_of_seconds <= 0)
     {
-        fprintf(stderr, "The number of seconds must be greater than 0\n");
+        fprintf(stderr, "The number of seconds must be a number greater than 0\n");
         exit(ARGS_ERROR);
     }
 
     if (!strcmp(argv[ARGUMENT_COUNT - 1], ".") || !strcmp(argv[ARGUMENT_COUNT - 1], ".."))
     {
-        fprintf(stderr, "The fifo name is invalid\n");
+        fprintf(stderr, "The FIFO name is invalid\n");
         exit(ARGS_ERROR);
     }
 

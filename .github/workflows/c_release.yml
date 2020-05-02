@@ -25,12 +25,12 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          # body: |
-          #  Changelog
-          #  - First Change
-          #  - Second Change
+          body: |
+            Changelog
+            - Modified RECVD position. Logs RECVD on too late calls (2LATE)
+            - Consistent stderr messages
           draft: false
-          prerelease: true
+          prerelease: false
       - name: Upload Release Asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1

@@ -1,5 +1,5 @@
 /**
- * @file    client_fifo.h
+ * @file    client_arguments.h
  * @brief   Treats the client's arguments.
  * @date    2020-04-30
  */
