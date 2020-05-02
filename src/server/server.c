@@ -1,8 +1,3 @@
-/**
- * @file    server.c   
- * @brief   Executes the operations related to server sided problems
- * @date    2020-04-30
- */
 #include "server.h"
 #include "server_fifo.c"
 #include "server_thread.c"
