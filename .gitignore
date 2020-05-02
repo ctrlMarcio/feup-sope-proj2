@@ -5,3 +5,7 @@
 **/.vscode/*
 !/.vscode/launch.json
 !/.vscode/tasks.json
+
+# test files
+/test/*
+!/test/test_runner.sh

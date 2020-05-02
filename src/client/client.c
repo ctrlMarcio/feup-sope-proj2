@@ -78,9 +78,7 @@ void setup_signals(int nsecs)
     action.sa_flags = 0;
     sigemptyset(&action.sa_mask);
 
-    //sigaction(SIGALRM, &action, NULL);
-
-    sigaction(SIGUSR1, &action, NULL);
+    sigaction(SIGALRM, &action, NULL);
 
     alarm(nsecs);
 
@@ -91,7 +89,6 @@ void setup_signals(int nsecs)
 
 void terminate(int signo)
 {
-    printf("\n\n\nSIGNO: %d\n", signo);
     close(request_fd);
     pthread_exit(0);
 }

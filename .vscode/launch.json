@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/U1",
-            "args": ["-t", "2", "fifoname"],
+            "args": ["-t", "20", "fifoname"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

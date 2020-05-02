@@ -11,22 +11,27 @@
 #include "../util/utils.h"
 #include "../util/message.h"
 
-char fifoname2[1024];
+/**
+ * @brief   The name of the private FIFO.
+ */
+char private_fifo_name[MAX_FIFO_NAME_SIZE];
 
-void sigpipe_handler(int signo)
-{
-    unlink(fifoname2);
-    pthread_exit(0);
-}
+/**
+ * @brief   Sets up the signal handlers for the individual thread.
+ */
+void setup_thread_signals();
+
+/**
+ * @brief   The handler for when a SIGPIPE is received. 
+ * 
+ * @param   signo the signal code
+ */
+void sigpipe_handler(int signo);
 
 void *request_handler(void *arg)
 {
-    struct sigaction action;
-    action.sa_handler = sigpipe_handler;
-    action.sa_flags = 0;
-    sigemptyset(&action.sa_mask);
-
-    sigaction(SIGPIPE, &action, NULL);
+    // setup signals
+    setup_thread_signals();
 
     // get values
     unsigned long i = *(int *)arg;
@@ -39,20 +44,25 @@ void *request_handler(void *arg)
     char fifo_name[MAX_FIFO_NAME_SIZE];
     create_private_fifo(pid, tid, fifo_name);
 
-    strcpy(fifoname2, fifo_name);
+    strcpy(private_fifo_name, fifo_name);
 
     // send request
     query query = {i, pid, tid, dur, pl};
-    write(request_fd, &query, sizeof(query));
+    int bytes_written;
+    if ((bytes_written = write(request_fd, &query, sizeof(query))) == -1) // there's a problem with the public FIFO
+    {
+        register_operation(FAILD, &query);
+        unlink(fifo_name);
+        return NULL;
+    }
     register_operation(IWANT, &query);
 
     // open FIFO
     int fd = open_private_fifo(fifo_name);
 
     // receive response
-    int bytes_read = read(fd, &query, sizeof(query));
-
-    if (bytes_read <= 0)
+    int bytes_read;
+    if ((bytes_read = read(fd, &query, sizeof(query))) <= 0)
     {
         register_operation(FAILD, &query);
         // destroy FIFO
@@ -60,14 +70,31 @@ void *request_handler(void *arg)
         return NULL;
     }
 
-    register_operation(IAMIN, &query);
-
     // verify if failed
     if (query.dur == -1)
         register_operation(CLOSD, &query);
+    else
+        register_operation(IAMIN, &query);
 
     // destroy FIFO
     destroy_private_fifo(fd, fifo_name);
 
     return NULL;
+}
+
+void setup_thread_signals()
+{
+    struct sigaction action;
+    action.sa_handler = sigpipe_handler;
+    action.sa_flags = 0;
+    sigemptyset(&action.sa_mask);
+
+    sigaction(SIGPIPE, &action, NULL);
+}
+
+void sigpipe_handler(int signo)
+{
+    close(request_fd);
+    unlink(private_fifo_name);
+    pthread_exit(0);
 }
