@@ -28,9 +28,9 @@ int main(int argc, char *argv[])
     /*
      * Argument and alarm handling and FIFO creation
      */
-    int number_of_seconds;
+    int number_of_seconds, number_of_places, number_of_threads;
 
-    read_arguments(argc, argv, &number_of_seconds, fifoname);
+    read_arguments(argc, argv, &number_of_seconds, &number_of_places, &number_of_threads, fifoname);
 
     init_sigint();
 

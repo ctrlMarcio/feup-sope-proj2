@@ -18,7 +18,7 @@
 /**
  * @brief   The delay, in milliseconds, between each request thread.
  */
-const int MILLIS_DELAY = 100;
+const int MILLIS_DELAY = 10;
 
 /**
  * @brief   Sets up the SIGALARM.
