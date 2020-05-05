@@ -2,6 +2,7 @@
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ctrlmarcio/feup-sope-proj2/C%20CI%20Build?logo=github)](https://github.com/ctrlMarcio/feup-sope-proj2/actions?query=workflow%3A%22C+CI+Build%22)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ctrlmarcio/feup-sope-proj2/C%20CI%20Documentation?label=documentation&logo=github)](https://github.com/ctrlMarcio/feup-sope-proj2/actions?query=workflow%3A%22C+CI+Documentation%22)
+[![Codacy grade](https://img.shields.io/codacy/grade/f8bebb649ff54000894035a9db01d11d?logo=codacy)](https://app.codacy.com/manual/ctrlMarcio/feup-sope-proj2)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/ctrlmarcio/feup-sope-proj2?logo=github)](https://github.com/ctrlMarcio/feup-sope-proj2/actions?query=workflow%3A%22C+CI+Release%22)
 [![GitHub license](https://img.shields.io/github/license/ctrlMarcio/feup-sope-proj2?color=blue)](https://github.com/ctrlMarcio/feup-sope-proj2/blob/master/LICENSE)
 
@@ -36,8 +37,8 @@ To run the client program use:
 ./bin/U1 -t <number of seconds> <FIFO name>
 ```
 
-- **number of seconds**, the number of seconds that the program must send requests;
-- **FIFO name**, the name of the server's public FIFO.
+-   **number of seconds**, the number of seconds that the program must send requests;
+-   **FIFO name**, the name of the server's public FIFO.
 
 ### Server
 
@@ -47,8 +48,8 @@ To run the server program use:
 ./bin/Q1 -t <number of seconds> <FIFO name>
 ```
 
-- **number of seconds**, the number of seconds that the program must receive requests;
-- **FIFO name**, the name of the public FIFO.
+-   **number of seconds**, the number of seconds that the program must receive requests;
+-   **FIFO name**, the name of the public FIFO.
 
 ### Note
 
@@ -56,27 +57,27 @@ The FIFOs are stored in the **/tmp/** directory of the OS.
 
 ### Exit codes
 
-| Exit Code |        Name         | Description                                            |
+| Exit Code |         Name        | Description                                            |
 | :-------: | :-----------------: | ------------------------------------------------------ |
 |     1     |   Arguments Error   | Defines an error with the arguments.                   |
-|     2     |  Connection Error   | Defines an error connecting the client and the server. |
+|     2     |   Connection Error  | Defines an error connecting the client and the server. |
 |     3     | FIFO Creation Error | Defines an error while creating or opening a FIFO.     |
-|     4     |  Alarm Init Error   | Defines an error when creating an alarm.               |
+|     4     |   Alarm Init Error  | Defines an error when creating an alarm.               |
 |     5     |  Thread Init Error  | Defines an error when initializing a thread.           |
 
 ## Features
 
 Each feature is classified as bad, ok or great.
 
-|               Feature                |                                                    Status                                                     |
+|                Feature               |                                                     Status                                                    |
 | :----------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|           SIGINT Handling            |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
-|    Argument Reading and Handling     |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
-|    Multi-thread Request Handling     |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|            SIGINT Handling           |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|     Argument Reading and Handling    |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|     Multi-thread Request Handling    |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 |      Regular Request Processing      |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 | Irregular Request Processing (error) |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
-|        Operation Registering         |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
-|         Deadlock Situations          |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|         Operation Registering        |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|          Deadlock Situations         |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 |         Synced Memory Access         |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 |     Resource Removal and Release     |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 |          Pipe Communication          |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
@@ -99,8 +100,8 @@ The output is **OK** if the test is successful, **FAILED** otherwise.
 
 ## Authors
 
-- Márcio Duarte | [GitHub](https://github.com/ctrlMarcio) | [FEUP](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=201909936)
-- Luís Tavares | [GitHub](https://github.com/luist18) | [FEUP](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=201809679)
+-   Márcio Duarte | [GitHub](https://github.com/ctrlMarcio) \| [FEUP](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=201909936)
+-   Luís Tavares | [GitHub](https://github.com/luist18) \| [FEUP](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=201809679)
 
 ### Disclaimer
 
