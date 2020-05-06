@@ -14,6 +14,7 @@
 #include <string.h>
 #include <pthread.h>
 #include <fcntl.h>
+#include <semaphore.h>
 
 #include "server_fifo.h"
 #include "../util/error.h"
@@ -57,5 +58,10 @@ void assign_place(long place, query *query);
  * @brief   Destroys a mutex.
  */
 void destroy_mutex();
+
+/**
+ * @brief   Semaphore responsible for handling the thread number.
+ */
+sem_t sem_threads;
 
 #endif

@@ -38,6 +38,8 @@ void *answer_handler(void *arg)
 
     close(private_fifo_fd);
 
+    sem_post(&sem_threads);
+
     return NULL;
 }
 

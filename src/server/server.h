@@ -15,6 +15,7 @@
 #include <signal.h>
 #include <pthread.h>
 #include <fcntl.h>
+#include <semaphore.h>
 
 #include "../util/error.h"
 #include "../util/utils.h"

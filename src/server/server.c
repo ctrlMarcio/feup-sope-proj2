@@ -34,35 +34,39 @@ int main(int argc, char *argv[])
 
     init_sigint();
 
+    sem_init(&sem_threads, 0, number_of_threads);
+
     init_alarm();
     alarm(number_of_seconds);
 
     public_fifo_fd = init_public_fifo(fifoname);
 
+    int max = 100000; // TEST number very big
     /*
      * Request handling
      */
-    query request;
-    while (running)
+    query request[max]; // TEST
+    int i = 0;
+    while (running && read(public_fifo_fd, &(request[i % max]), sizeof(query)) > 0)
     {
-        while (read(public_fifo_fd, &request, sizeof(query)) > 0)
-        {
-            register_operation(RECVD, &request);
-            pthread_t tid;
-            pthread_create(&tid, NULL, answer_handler, &request);
-            pthread_detach(tid);
-        }
+        sem_wait(&sem_threads);
+        register_operation(RECVD, &(request[i % max]));
+        pthread_t tid;
+        pthread_create(&tid, NULL, answer_handler, &(request[i % max]));
+        pthread_detach(tid);
+        ++i;
     }
 
     /*
      * Too late request handling. Empties the FIFO buffer
      */
-    while (read(public_fifo_fd, &request, sizeof(query)) > 0)
+    while (read(public_fifo_fd, &(request[i % max]), sizeof(query)) > 0)
     {
-        register_operation(RECVD, &request);
+        register_operation(RECVD, &(request[i % max]));
         pthread_t tid;
-        pthread_create(&tid, NULL, late_answer_handler, &request);
+        pthread_create(&tid, NULL, late_answer_handler, &(request[i % max]));
         pthread_detach(tid);
+        ++i;
     }
 
     /*
