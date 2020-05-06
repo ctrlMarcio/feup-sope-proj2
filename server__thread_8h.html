@@ -64,7 +64,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">server_thread.h File Reference</div>  </div>
 </div><!--header-->
@@ -80,6 +81,7 @@ $(function() {
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &lt;pthread.h&gt;</code><br />
 <code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &lt;semaphore.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="server__fifo_8h_source.html">server_fifo.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="error_8h_source.html">../util/error.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="utils_8h_source.html">../util/utils.h</a>&quot;</code><br />
@@ -111,6 +113,13 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__thread_8h.html#a0341d0f1bb42ad2fbe56308273ccf165">destroy_mutex</a> ()</td></tr>
 <tr class="memdesc:a0341d0f1bb42ad2fbe56308273ccf165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a mutex. <br /></td></tr>
 <tr class="separator:a0341d0f1bb42ad2fbe56308273ccf165"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a5460944da5d6a52ddd3136ca7b1aca96"><td class="memItemLeft" align="right" valign="top"><a id="a5460944da5d6a52ddd3136ca7b1aca96"></a>
+sem_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__thread_8h.html#a5460944da5d6a52ddd3136ca7b1aca96">sem_threads</a></td></tr>
+<tr class="memdesc:a5460944da5d6a52ddd3136ca7b1aca96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore responsible for handling the thread number. <br /></td></tr>
+<tr class="separator:a5460944da5d6a52ddd3136ca7b1aca96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Methods related to thread handling. </p>
