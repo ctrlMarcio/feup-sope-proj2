@@ -7,9 +7,16 @@ long bathroom_places[MAX_PLACES] = {0};
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
+pthread_mutex_t server_mutex = PTHREAD_MUTEX_INITIALIZER;
+
 void *answer_handler(void *arg)
 {
-    query request = *(query *)arg;
+    pthread_mutex_lock(&server_mutex);
+
+    query old_request = *(query *)arg;
+    query request = {old_request.i, old_request.pid, old_request.tid, old_request.dur, old_request.pl};
+
+    pthread_mutex_unlock(&server_mutex);
 
     // TODO return value check, 2nd part only
 
@@ -45,7 +52,12 @@ void *answer_handler(void *arg)
 
 void *late_answer_handler(void *arg)
 {
-    query request = *(query *)arg;
+    pthread_mutex_lock(&server_mutex);
+
+    query old_request = *(query *)arg;
+    query request = {old_request.i, old_request.pid, old_request.tid, old_request.dur, old_request.pl};
+
+    pthread_mutex_unlock(&server_mutex);
 
     query answer = {request.i, getpid(), pthread_self(), -1, -1};
 
@@ -60,6 +72,8 @@ void *late_answer_handler(void *arg)
     write(private_fifo_fd, &answer, sizeof(query));
 
     close(private_fifo_fd);
+
+    sem_post(&sem_threads);
 
     return NULL;
 }
@@ -80,4 +94,5 @@ void assign_place(long place, query *query)
 void destroy_mutex()
 {
     pthread_mutex_destroy(&mutex);
+    pthread_mutex_destroy(&server_mutex);
 }

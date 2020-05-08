@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 <tQ> <tU> <fifoname>"
+if [ "$#" -ne 5 ]; then
+    echo "Usage: $0 <tQ> <tU> <lQ> <nQ> <fifoname>"
     exit 1
 fi
 
@@ -15,16 +15,16 @@ if [ "$?" -eq 2 ]; then
     exit 2
 fi
 
-(rm q1.err && rm q1.log && rm u1.err && rm u1.log) 2> /dev/null # they are overwritten below, but better safe than sorry
+(rm q2.err && rm q2.log && rm u2.err && rm u2.log) 2> /dev/null # they are overwritten below, but better safe than sorry
 
-../bin/Q1 -t "$1" -l 2 -n 2 "$3" > q1.log 2> q1.err & pid1=$!
-../bin/U1 -t "$2" "$3" > u1.log 2> u1.err & pid2=$!
+../Q2 -t "$1" -l "$3" -n "$4" "$5" > q2.log 2> q2.err & pid1=$!
+../U2 -t "$2" "$5" > u2.log 2> u2.err & pid2=$!
 
 wait "$pid1"
 wait "$pid2"
 
-n2LATE=$(grep 2LATE q1.log | wc -l) ; echo "2LATE: $n2LATE"
-nCLOSD=$(grep CLOSD u1.log | wc -l) ; echo "CLOSD: $nCLOSD"
+n2LATE=$(grep 2LATE q2.log | wc -l) ; echo "2LATE: $n2LATE"
+nCLOSD=$(grep CLOSD u2.log | wc -l) ; echo "CLOSD: $nCLOSD"
 
 if [ "$n2LATE" -eq "$nCLOSD" ]; then
     echo "OK!"

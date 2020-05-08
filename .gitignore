@@ -9,3 +9,7 @@
 # test files
 **/test/*
 !/test/test_runner.sh
+
+#bin files
+Q2
+U2

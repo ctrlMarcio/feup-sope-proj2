@@ -41,14 +41,15 @@ int main(int argc, char *argv[])
 
     public_fifo_fd = init_public_fifo(fifoname);
 
-    int max = 100000; // TEST number very big
+    int max = 10000; // TODO replace by number of threads
     /*
      * Request handling
      */
-    query request[max]; // TEST
+    query request[max];
     int i = 0;
-    while (running && read(public_fifo_fd, &(request[i % max]), sizeof(query)) > 0)
+    while (running && !pthread_mutex_lock(&server_mutex) && read(public_fifo_fd, &(request[i % max]), sizeof(query)) > 0)
     {
+        pthread_mutex_unlock(&server_mutex);
         sem_wait(&sem_threads);
         register_operation(RECVD, &(request[i % max]));
         pthread_t tid;
@@ -57,11 +58,15 @@ int main(int argc, char *argv[])
         ++i;
     }
 
+    pthread_mutex_unlock(&server_mutex);
+
     /*
      * Too late request handling. Empties the FIFO buffer
      */
-    while (read(public_fifo_fd, &(request[i % max]), sizeof(query)) > 0)
+    while (!pthread_mutex_lock(&server_mutex) && read(public_fifo_fd, &(request[i % max]), sizeof(query)) > 0)
     {
+        pthread_mutex_unlock(&server_mutex);
+        sem_wait(&sem_threads);
         register_operation(RECVD, &(request[i % max]));
         pthread_t tid;
         pthread_create(&tid, NULL, late_answer_handler, &(request[i % max]));
@@ -72,6 +77,7 @@ int main(int argc, char *argv[])
     /*
      * Closes, finally, the public FIFO
      */
+    sem_destroy(&sem_threads);
     destroy_mutex();
     close(public_fifo_fd);
     pthread_exit(0);

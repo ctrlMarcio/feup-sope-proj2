@@ -40,6 +40,8 @@ void *request_handler(void *arg)
     int dur = rand() % MAX_DURATION;
     long pl = -1;
 
+    dur = 500;
+
     // create FIFO
     char fifo_name[MAX_FIFO_NAME_SIZE];
     create_private_fifo(pid, tid, fifo_name);
@@ -48,8 +50,7 @@ void *request_handler(void *arg)
 
     // send request
     query query = {i, pid, tid, dur, pl};
-    int bytes_written;
-    if ((bytes_written = write(request_fd, &query, sizeof(query))) == -1) // there's a problem with the public FIFO
+    if (write(request_fd, &query, sizeof(query)) == -1) // there's a problem with the public FIFO
     {
         register_operation(FAILD, &query);
         unlink(fifo_name);
@@ -61,8 +62,7 @@ void *request_handler(void *arg)
     int fd = open_private_fifo(fifo_name);
 
     // receive response
-    int bytes_read;
-    if ((bytes_read = read(fd, &query, sizeof(query))) <= 0)
+    if (read(fd, &query, sizeof(query)) <= 0)
     {
         register_operation(FAILD, &query);
         // destroy FIFO
