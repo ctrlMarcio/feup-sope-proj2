@@ -47,14 +47,17 @@ int main(int argc, char *argv[])
      */
     query request[max];
     int i = 0;
-    while (running && read(public_fifo_fd, &(request[i % max]), sizeof(query)) > 0)
+    while (running && !sem_wait(&sem_threads))
     {
-        sem_wait(&sem_threads);
+        pthread_mutex_lock(&server_mutex);
+        if (read(public_fifo_fd, &(request[i % max]), sizeof(query)) <= 0)
+            continue;
+
+        //sem_wait(&sem_threads);
         register_operation(RECVD, &(request[i % max]));
         pthread_t tid;
         pthread_create(&tid, NULL, answer_handler, &(request[i % max]));
         pthread_detach(tid);
-        pthread_mutex_lock(&server_mutex);
         ++i;
     }
 
@@ -63,17 +66,19 @@ int main(int argc, char *argv[])
     /*
      * Too late request handling. Empties the FIFO buffer
      */
-    while (read(public_fifo_fd, &(request[i % max]), sizeof(query)) > 0)
+    while (!sem_wait(&sem_threads))
     {
-        sem_wait(&sem_threads);
+        pthread_mutex_lock(&server_mutex);
+        if (read(public_fifo_fd, &(request[i % max]), sizeof(query)) <= 0)
+            break;
+
         register_operation(RECVD, &(request[i % max]));
         pthread_t tid;
         pthread_create(&tid, NULL, late_answer_handler, &(request[i % max]));
         pthread_detach(tid);
-        pthread_mutex_lock(&server_mutex);
         ++i;
     }
-    
+
     pthread_mutex_unlock(&server_mutex);
 
     /*
