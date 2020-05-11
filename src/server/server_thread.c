@@ -11,8 +11,6 @@ pthread_mutex_t server_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void *answer_handler(void *arg)
 {
-    pthread_mutex_lock(&server_mutex);
-
     query old_request = *(query *)arg;
     query request = {old_request.i, old_request.pid, old_request.tid, old_request.dur, old_request.pl};
 
@@ -52,8 +50,6 @@ void *answer_handler(void *arg)
 
 void *late_answer_handler(void *arg)
 {
-    pthread_mutex_lock(&server_mutex);
-
     query old_request = *(query *)arg;
     query request = {old_request.i, old_request.pid, old_request.tid, old_request.dur, old_request.pl};
 

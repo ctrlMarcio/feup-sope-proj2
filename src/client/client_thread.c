@@ -40,7 +40,7 @@ void *request_handler(void *arg)
     int dur = rand() % MAX_DURATION;
     long pl = -1;
 
-    dur = 500;
+    dur = 50;
 
     // create FIFO
     char fifo_name[MAX_FIFO_NAME_SIZE];
