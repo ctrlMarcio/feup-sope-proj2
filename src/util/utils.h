@@ -31,7 +31,7 @@ typedef int bool;
 /**
  * @brief   Temporary value of max slots in the bathroom.
  */
-#define MAX_PLACES 134217728
+#define MAX_PLACES 33554432
 
 /**
  * @brief   The name of the folder where FIFOs are to be interchanged.

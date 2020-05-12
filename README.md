@@ -15,6 +15,12 @@ It is intended to obtain a client-server application capable of handling conflic
 The shared memory region is a bathroom with several unisex seats,
 controlled by a Q process, which receives requests from users. Access requests are sent through a multi-threaded process U (client), indicating the time that the users wishes be in the bathroom.
 
+## Version
+
+### v1.0
+
+The source code for the version 1.0 can be accessed [here](https://github.com/ctrlMarcio/feup-sope-proj2/tree/228a697e44ca587cf574e641789464c889ef0ec2), as well as the artifacts [here](https://github.com/ctrlMarcio/feup-sope-proj2/releases/tag/v1.0).
+
 ## Files
 
 The source files are located inside the **src** directory. The src directory has three subdirectories. The **server** directory is related to the server program, the **client** directory is related to the client program and the **util** directory contains useful files for both programs.
@@ -25,7 +31,7 @@ The documentation is generated automatically with **doxygen** and can be accesse
 
 ## Compiling
 
-Run make in the root directory of the repository and the binary client and server files are placed inside a **bin** directory in the repository root.
+Run make in the root directory of the repository and the binary client and server files are placed inside a **bin** directory in the repository root. A symbolic link to each executable file is created in the **root** directory.
 
 ## Running
 
@@ -34,7 +40,7 @@ Run make in the root directory of the repository and the binary client and serve
 To run the client program use:
 
 ```bash
-./bin/U1 -t <number of seconds> <FIFO name>
+./U2 -t <number of seconds> <FIFO name>
 ```
 
 -   **number of seconds**, the number of seconds that the program must send requests;
@@ -45,11 +51,15 @@ To run the client program use:
 To run the server program use:
 
 ```bash
-./bin/Q1 -t <number of seconds> <FIFO name>
+./Q2 [-t <number of seconds>] [-n <number of threads>] [-l <number of places>] <FIFO name>
 ```
 
 -   **number of seconds**, the number of seconds that the program must receive requests;
+-   **number of threads**, the number of threads that are simultaneous handling requests;
+-   **number of places**, the number of available places in the bathroom;
 -   **FIFO name**, the name of the public FIFO.
+
+**Note:** The argument specification does not follow any order.
 
 ### Note
 
@@ -82,6 +92,8 @@ Each feature is classified as bad, ok or great.
 |     Resource Removal and Release     |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 |          Pipe Communication          |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 |          SIGPIPE Handling\*          |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|       Limited Number of Threads      |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|   Limited Number of Nathroom Places  |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 |                Hotel?                | ![https://img.shields.io/badge/trivago-%20-brightgreen](https://img.shields.io/badge/trivago-%20-brightgreen) |
 
 ### Notes

@@ -34,34 +34,41 @@ int main(int argc, char *argv[])
 
     init_sigint();
 
+    long places[number_of_places];
+
+    set_bathroom_info(places, number_of_places);
+
     sem_init(&sem_threads, 0, number_of_threads);
+    sem_init(&sem_places, 0, number_of_places);
 
     init_alarm();
     alarm(number_of_seconds);
 
     public_fifo_fd = init_public_fifo(fifoname);
 
-    int max = number_of_threads; // TODO replace by number of threads
     /*
      * Request handling
      */
-    query request[max];
+    static query request[MAX_PLACES];
     int i = 0;
     while (running && !sem_wait(&sem_threads))
     {
+        sem_wait(&sem_places);
         pthread_mutex_lock(&server_mutex);
-        if (read(public_fifo_fd, &(request[i % max]), sizeof(query)) <= 0)
-            continue;
 
-        //sem_wait(&sem_threads);
-        register_operation(RECVD, &(request[i % max]));
+        if (read(public_fifo_fd, &(request[i % number_of_places]), sizeof(query)) <= 0) {
+            sem_post(&sem_threads);
+            sem_post(&sem_places);
+            pthread_mutex_unlock(&server_mutex);
+            continue;
+        }
+
+        register_operation(RECVD, &(request[i % number_of_places]));
         pthread_t tid;
-        pthread_create(&tid, NULL, answer_handler, &(request[i % max]));
+        pthread_create(&tid, NULL, answer_handler, &(request[i % number_of_places]));
         pthread_detach(tid);
         ++i;
     }
-
-    pthread_mutex_unlock(&server_mutex);
 
     /*
      * Too late request handling. Empties the FIFO buffer
@@ -69,17 +76,15 @@ int main(int argc, char *argv[])
     while (!sem_wait(&sem_threads))
     {
         pthread_mutex_lock(&server_mutex);
-        if (read(public_fifo_fd, &(request[i % max]), sizeof(query)) <= 0)
+        if (read(public_fifo_fd, &(request[i % number_of_places]), sizeof(query)) <= 0)
             break;
 
-        register_operation(RECVD, &(request[i % max]));
+        register_operation(RECVD, &(request[i % number_of_places]));
         pthread_t tid;
-        pthread_create(&tid, NULL, late_answer_handler, &(request[i % max]));
+        pthread_create(&tid, NULL, late_answer_handler, &(request[i % number_of_places]));
         pthread_detach(tid);
         ++i;
     }
-
-    pthread_mutex_unlock(&server_mutex);
 
     /*
      * Closes, finally, the public FIFO

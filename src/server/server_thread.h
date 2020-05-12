@@ -22,6 +22,16 @@
 #include "../util/message.c"
 
 /**
+ * @brief   Semaphore responsible for handling the thread number.
+ */
+sem_t sem_threads;
+
+/**
+ * @brief   Semaphore responsible for handling the bathroom places number.
+ */
+sem_t sem_places;
+
+/**
  * @brief       Handles the client requests.
  * @warning     returns NULL
  * 
@@ -60,8 +70,11 @@ void assign_place(long place, query *query);
 void destroy_mutex();
 
 /**
- * @brief   Semaphore responsible for handling the thread number.
+ * @brief   Sets up the bathroom information struct.
+ * 
+ * @param places        the bathroom places array pointer
+ * @param max_places    the max places of the bathroom
  */
-sem_t sem_threads;
+void set_bathroom_info(long *places, long max_places);
 
 #endif

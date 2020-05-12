@@ -26,11 +26,17 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: |
-            Changelog
-            - Modified RECVD position. Logs RECVD on too late calls (2LATE)
-            - Consistent stderr messages
+            **Note:** this pre-release has not been fully tested and may contain errors.
+
+            # New features / Improvements
+            - Support for a limited number of simultaneous users
+            - Support for a limited number of threads handling users
+            - Allow unordered argument specification
+
+            # Bug fixing
+            - General bug fixing
           draft: false
-          prerelease: false
+          prerelease: true
       - name: Upload Release Asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
