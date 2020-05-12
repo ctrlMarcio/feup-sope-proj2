@@ -113,6 +113,9 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__thread_8h.html#a0341d0f1bb42ad2fbe56308273ccf165">destroy_mutex</a> ()</td></tr>
 <tr class="memdesc:a0341d0f1bb42ad2fbe56308273ccf165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a mutex. <br /></td></tr>
 <tr class="separator:a0341d0f1bb42ad2fbe56308273ccf165"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab20e7ac2ae7cbdf3375726ba565042fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__thread_8h.html#ab20e7ac2ae7cbdf3375726ba565042fc">set_bathroom_info</a> (long *places, long max_places)</td></tr>
+<tr class="memdesc:ab20e7ac2ae7cbdf3375726ba565042fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the bathroom information struct.  <a href="#ab20e7ac2ae7cbdf3375726ba565042fc">More...</a><br /></td></tr>
+<tr class="separator:ab20e7ac2ae7cbdf3375726ba565042fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -120,6 +123,10 @@ Variables</h2></td></tr>
 sem_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__thread_8h.html#a5460944da5d6a52ddd3136ca7b1aca96">sem_threads</a></td></tr>
 <tr class="memdesc:a5460944da5d6a52ddd3136ca7b1aca96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore responsible for handling the thread number. <br /></td></tr>
 <tr class="separator:a5460944da5d6a52ddd3136ca7b1aca96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64db3b1f8653e5c970b5646e0fd77276"><td class="memItemLeft" align="right" valign="top"><a id="a64db3b1f8653e5c970b5646e0fd77276"></a>
+sem_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__thread_8h.html#a64db3b1f8653e5c970b5646e0fd77276">sem_places</a></td></tr>
+<tr class="memdesc:a64db3b1f8653e5c970b5646e0fd77276"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore responsible for handling the bathroom places number. <br /></td></tr>
+<tr class="separator:a64db3b1f8653e5c970b5646e0fd77276"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Methods related to thread handling. </p>
@@ -235,6 +242,43 @@ sem_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ser
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void* NULL </dd></dl>
+
+</div>
+</div>
+<a id="ab20e7ac2ae7cbdf3375726ba565042fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab20e7ac2ae7cbdf3375726ba565042fc">&#9670;&nbsp;</a></span>set_bathroom_info()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_bathroom_info </td>
+          <td>(</td>
+          <td class="paramtype">long *&#160;</td>
+          <td class="paramname"><em>places</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>max_places</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets up the bathroom information struct. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">places</td><td>the bathroom places array pointer </td></tr>
+    <tr><td class="paramname">max_places</td><td>the max places of the bathroom </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
