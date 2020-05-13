@@ -114,11 +114,80 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serv
 <tr class="memitem:a4b515337891f74ebd79cb307db16bf33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a4b515337891f74ebd79cb307db16bf33">sigint_handler</a> (int signo)</td></tr>
 <tr class="memdesc:a4b515337891f74ebd79cb307db16bf33"><td class="mdescLeft">&#160;</td><td class="mdescRight">SIGINT handler. Removes the program resource before stopping.  <a href="#a4b515337891f74ebd79cb307db16bf33">More...</a><br /></td></tr>
 <tr class="separator:a4b515337891f74ebd79cb307db16bf33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0bde6a99cda394c47dd68964ea65626"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#af0bde6a99cda394c47dd68964ea65626">get_free_thread_place</a> (<a class="el" href="structrequests__holder.html">requests_holder</a> *requests, unsigned long number_of_threads)</td></tr>
+<tr class="memdesc:af0bde6a99cda394c47dd68964ea65626"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the free request place in an array of requests.  <a href="#af0bde6a99cda394c47dd68964ea65626">More...</a><br /></td></tr>
+<tr class="separator:af0bde6a99cda394c47dd68964ea65626"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cc3cf417f40ff7bfd9d31bf6b956112"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a2cc3cf417f40ff7bfd9d31bf6b956112">read_late_requests</a> (int number_of_threads)</td></tr>
+<tr class="memdesc:a2cc3cf417f40ff7bfd9d31bf6b956112"><td class="mdescLeft">&#160;</td><td class="mdescRight">Too late request handling. Empties the FIFO buffer.  <a href="#a2cc3cf417f40ff7bfd9d31bf6b956112">More...</a><br /></td></tr>
+<tr class="separator:a2cc3cf417f40ff7bfd9d31bf6b956112"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Methods related to the server side. </p>
 <dl class="section date"><dt>Date</dt><dd>2020-04-28 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="af0bde6a99cda394c47dd68964ea65626"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0bde6a99cda394c47dd68964ea65626">&#9670;&nbsp;</a></span>get_free_thread_place()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long get_free_thread_place </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrequests__holder.html">requests_holder</a> *&#160;</td>
+          <td class="paramname"><em>requests</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>number_of_threads</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the free request place in an array of requests. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">requests</td><td>the array of requests </td></tr>
+    <tr><td class="paramname">number_of_threads</td><td>the nubmer of threads in the array </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2cc3cf417f40ff7bfd9d31bf6b956112"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cc3cf417f40ff7bfd9d31bf6b956112">&#9670;&nbsp;</a></span>read_late_requests()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void read_late_requests </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>number_of_threads</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Too late request handling. Empties the FIFO buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">number_of_threads</td><td>the number of threads the server handles </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a4b515337891f74ebd79cb307db16bf33"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4b515337891f74ebd79cb307db16bf33">&#9670;&nbsp;</a></span>sigint_handler()</h2>
 
