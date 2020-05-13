@@ -22,6 +22,16 @@
 #include "../util/message.c"
 
 /**
+ * @brief Indicator of an empty thread location 
+ */
+#define EMPTY_THREAD_INDICATOR -1
+
+/**
+ * @brief Indicator of an empty bathroom location 
+ */
+#define EMPTY_BATHROOM_INDICATOR 0
+
+/**
  * @brief   Semaphore responsible for handling the thread number.
  */
 sem_t sem_threads;
@@ -76,5 +86,8 @@ void destroy_mutex();
  * @param max_places    the max places of the bathroom
  */
 void set_bathroom_info(long *places, long max_places);
+
+// TODO
+void set_requests(requests_holder *rh);
 
 #endif

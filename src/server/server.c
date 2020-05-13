@@ -25,75 +25,84 @@ struct sigaction old_action;
 
 int main(int argc, char *argv[])
 {
-    /*
-     * Argument and alarm handling and FIFO creation
-     */
+    // reads the arguments
     int number_of_seconds, number_of_places, number_of_threads;
-
     read_arguments(argc, argv, &number_of_seconds, &number_of_places, &number_of_threads, fifoname);
 
+    // initializes the handlers
     init_sigint();
+    init_alarm();
 
+    // initializes bathroom array (manage bathrooms)
     long places[number_of_places];
-
     set_bathroom_info(places, number_of_places);
 
+    // initialize request holder array (manage threads)
+    requests_holder requests[number_of_threads];
+    for (int i = 0; i < number_of_threads; ++i)
+        requests[i].place = EMPTY_THREAD_INDICATOR;
+    set_requests(requests);
+
+    // starts counting the alarm
+    alarm(number_of_seconds);
+
+    // initializes the threads and bathrooms semaphores
     sem_init(&sem_threads, 0, number_of_threads);
     sem_init(&sem_places, 0, number_of_places);
 
-    init_alarm();
-    alarm(number_of_seconds);
-
+    // opens the public fifo
     public_fifo_fd = init_public_fifo(fifoname);
 
-    /*
-     * Request handling
-     */
-    static query request[MAX_PLACES];
-    int i = 0;
+    // reads requests in the main timeframe
     while (running && !sem_wait(&sem_threads))
     {
+        long index = get_free_thread_place(requests, number_of_threads);
         sem_wait(&sem_places);
-        pthread_mutex_lock(&server_mutex);
 
-        if (read(public_fifo_fd, &(request[i % number_of_places]), sizeof(query)) <= 0) {
+        // if the user didn't sent anything doesn't create threads
+        if (read(public_fifo_fd, &(requests[index].request), sizeof(query)) <= 0)
+        {
             sem_post(&sem_threads);
             sem_post(&sem_places);
             pthread_mutex_unlock(&server_mutex);
             continue;
         }
 
-        register_operation(RECVD, &(request[i % number_of_places]));
+        requests[index].place = index;
+
+        register_operation(RECVD, &(requests[index].request));
         pthread_t tid;
-        pthread_create(&tid, NULL, answer_handler, &(request[i % number_of_places]));
+        pthread_create(&tid, NULL, answer_handler, &(requests[index]));
         pthread_detach(tid);
-        ++i;
     }
 
-    /*
-     * Too late request handling. Empties the FIFO buffer
-     */
-    while (!sem_wait(&sem_threads))
-    {
-        pthread_mutex_lock(&server_mutex);
-        if (read(public_fifo_fd, &(request[i % number_of_places]), sizeof(query)) <= 0)
-            break;
+    // reads the late requests
+    read_late_requests(number_of_threads);
 
-        register_operation(RECVD, &(request[i % number_of_places]));
-        pthread_t tid;
-        pthread_create(&tid, NULL, late_answer_handler, &(request[i % number_of_places]));
-        pthread_detach(tid);
-        ++i;
-    }
-
-    /*
-     * Closes, finally, the public FIFO
-     */
+    // closes and destroys all the resources
     sem_destroy(&sem_threads);
     destroy_mutex();
     close(public_fifo_fd);
     unlink(fifoname);
     pthread_exit(0);
+}
+
+void read_late_requests(int number_of_threads)
+{
+    while (!sem_wait(&sem_threads))
+    {
+        long index = get_free_thread_place(requests, number_of_threads);
+
+        if (read(public_fifo_fd, &(requests[index].request), sizeof(query)) <= 0)
+            break;
+
+        requests[index].place = index;
+
+        register_operation(RECVD, &(requests[index].request));
+        pthread_t tid;
+        pthread_create(&tid, NULL, late_answer_handler, &(requests[index]));
+        pthread_detach(tid);
+    }
 }
 
 void init_alarm()
@@ -131,4 +140,12 @@ void sigint_handler(int signo)
     close(public_fifo_fd);
     unlink(fifoname);
     kill(0, SIGINT);
+}
+
+long get_free_thread_place(requests_holder *requests, unsigned long number_of_threads)
+{
+    for (long i = 0; i < number_of_threads; ++i)
+        if (requests[i].place == EMPTY_THREAD_INDICATOR)
+            return i;
+    return -1;
 }

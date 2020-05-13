@@ -69,4 +69,12 @@ typedef struct query
     long pl;
 } query;
 
+// TODO
+typedef struct requests_holder
+{
+    query request;
+
+    long place;
+} requests_holder;
+
 #endif

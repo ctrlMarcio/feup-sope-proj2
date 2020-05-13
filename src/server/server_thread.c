@@ -7,65 +7,87 @@ long *bathroom;
 
 long bathroom_places;
 
+requests_holder *requests;
+
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 pthread_mutex_t server_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void *answer_handler(void *arg)
 {
-    query old_request = *(query *)arg;
-    query request = {old_request.i, old_request.pid, old_request.tid, old_request.dur, old_request.pl};
+    // read argument
+    requests_holder rh = *(requests_holder *)arg;
+    query request = rh.request;
 
-    pthread_mutex_unlock(&server_mutex);
-
+    // get bathroom place
     pthread_mutex_lock(&mutex);
-
     long place = get_free_place();
     assign_place(place, &request);
-
     pthread_mutex_unlock(&mutex);
 
     register_operation(ENTER, &request);
 
+    // get answer
     query answer = {request.i, getpid(), pthread_self(), request.dur, place + 1};
 
+    // open private fifo
     char private_fifoname[MAX_FIFO_NAME_SIZE];
     sprintf(private_fifoname, "/%s/%ld.%ld", FIFO_FOLDER, (long)request.pid, (long)request.tid);
 
     int private_fifo_fd = open_private_fifo(private_fifoname, &request);
 
+    // do the job
     usleep(request.dur * 1000);
     register_operation(TIMUP, &answer);
+
+    // write the answer
     write(private_fifo_fd, &answer, sizeof(query));
     close(private_fifo_fd);
 
+    // free bathroom
+    pthread_mutex_lock(&mutex);
+    bathroom[place] = EMPTY_BATHROOM_INDICATOR;
+    pthread_mutex_unlock(&mutex);
+
+    // free thread place
+    pthread_mutex_lock(&server_mutex);
+    requests[rh.place].place = EMPTY_THREAD_INDICATOR;
+    pthread_mutex_unlock(&server_mutex);
+
+    // notify semaphores
     sem_post(&sem_threads);
     sem_post(&sem_places);
-
-    bathroom[place] = 0;
 
     return NULL;
 }
 
 void *late_answer_handler(void *arg)
 {
-    query old_request = *(query *)arg;
-    query request = {old_request.i, old_request.pid, old_request.tid, old_request.dur, old_request.pl};
+    // read argument
+    requests_holder rh = *(requests_holder *)arg;
+    query request = rh.request;
 
-    pthread_mutex_unlock(&server_mutex);
-
+    // get answer
     query answer = {request.i, getpid(), pthread_self(), -1, -1};
 
     register_operation(TOOLATE, &answer);
 
+    // open private fifo
     char private_fifoname[MAX_FIFO_NAME_SIZE];
-
     sprintf(private_fifoname, "/%s/%ld.%ld", FIFO_FOLDER, (long)request.pid, (long)request.tid);
 
     int private_fifo_fd = open_private_fifo(private_fifoname, &request);
 
+    // write answer
     write(private_fifo_fd, &answer, sizeof(query));
     close(private_fifo_fd);
+
+    // free thread place
+    pthread_mutex_lock(&server_mutex);
+    requests[rh.place].place = -1;
+    pthread_mutex_unlock(&server_mutex);
+
+    // notify semaphore
     sem_post(&sem_threads);
 
     return NULL;
@@ -93,8 +115,13 @@ void destroy_mutex()
 void set_bathroom_info(long *places, long max_places)
 {
     for (int i = 0; i < max_places; ++i)
-        *(places + i) = 0;
+        *(places + i) = EMPTY_BATHROOM_INDICATOR;
 
     bathroom = places;
     bathroom_places = max_places;
+}
+
+void set_requests(requests_holder *rh)
+{
+    requests = rh;
 }
