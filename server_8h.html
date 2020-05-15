@@ -117,9 +117,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serv
 <tr class="memitem:af0bde6a99cda394c47dd68964ea65626"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#af0bde6a99cda394c47dd68964ea65626">get_free_thread_place</a> (<a class="el" href="structrequests__holder.html">requests_holder</a> *requests, unsigned long number_of_threads)</td></tr>
 <tr class="memdesc:af0bde6a99cda394c47dd68964ea65626"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the free request place in an array of requests.  <a href="#af0bde6a99cda394c47dd68964ea65626">More...</a><br /></td></tr>
 <tr class="separator:af0bde6a99cda394c47dd68964ea65626"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2cc3cf417f40ff7bfd9d31bf6b956112"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a2cc3cf417f40ff7bfd9d31bf6b956112">read_late_requests</a> (int number_of_threads)</td></tr>
-<tr class="memdesc:a2cc3cf417f40ff7bfd9d31bf6b956112"><td class="mdescLeft">&#160;</td><td class="mdescRight">Too late request handling. Empties the FIFO buffer.  <a href="#a2cc3cf417f40ff7bfd9d31bf6b956112">More...</a><br /></td></tr>
-<tr class="separator:a2cc3cf417f40ff7bfd9d31bf6b956112"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02ee5c67f8aaa28af48fad58296cfead"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a02ee5c67f8aaa28af48fad58296cfead">read_requests</a> (<a class="el" href="structrequests__holder.html">requests_holder</a> requests_info[], int number_of_threads)</td></tr>
+<tr class="memdesc:a02ee5c67f8aaa28af48fad58296cfead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request handling.  <a href="#a02ee5c67f8aaa28af48fad58296cfead">More...</a><br /></td></tr>
+<tr class="separator:a02ee5c67f8aaa28af48fad58296cfead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afad3c7fcb9c3601d932dbe58c2f35ab3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#afad3c7fcb9c3601d932dbe58c2f35ab3">read_late_requests</a> (<a class="el" href="structrequests__holder.html">requests_holder</a> requests_info[], int number_of_threads)</td></tr>
+<tr class="memdesc:afad3c7fcb9c3601d932dbe58c2f35ab3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Too late request handling. Empties the FIFO buffer.  <a href="#afad3c7fcb9c3601d932dbe58c2f35ab3">More...</a><br /></td></tr>
+<tr class="separator:afad3c7fcb9c3601d932dbe58c2f35ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Methods related to the server side. </p>
@@ -162,8 +165,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serv
 
 </div>
 </div>
-<a id="a2cc3cf417f40ff7bfd9d31bf6b956112"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2cc3cf417f40ff7bfd9d31bf6b956112">&#9670;&nbsp;</a></span>read_late_requests()</h2>
+<a id="afad3c7fcb9c3601d932dbe58c2f35ab3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afad3c7fcb9c3601d932dbe58c2f35ab3">&#9670;&nbsp;</a></span>read_late_requests()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,9 +174,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serv
         <tr>
           <td class="memname">void read_late_requests </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>number_of_threads</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structrequests__holder.html">requests_holder</a>&#160;</td>
+          <td class="paramname"><em>requests_info</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>number_of_threads</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -181,6 +194,44 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serv
 <p>Too late request handling. Empties the FIFO buffer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">requests_info</td><td>the requests info array </td></tr>
+    <tr><td class="paramname">number_of_threads</td><td>the number of threads the server handles </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a02ee5c67f8aaa28af48fad58296cfead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02ee5c67f8aaa28af48fad58296cfead">&#9670;&nbsp;</a></span>read_requests()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void read_requests </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrequests__holder.html">requests_holder</a>&#160;</td>
+          <td class="paramname"><em>requests_info</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>number_of_threads</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Request handling. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">requests_info</td><td>the requests info array </td></tr>
     <tr><td class="paramname">number_of_threads</td><td>the number of threads the server handles </td></tr>
   </table>
   </dd>
