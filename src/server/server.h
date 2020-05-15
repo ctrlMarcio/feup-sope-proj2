@@ -59,10 +59,19 @@ void sigint_handler(int signo);
 long get_free_thread_place(requests_holder *requests, unsigned long number_of_threads);
 
 /**
+ * @brief Request handling.
+ * 
+ * @param requests_info         the requests info array
+ * @param number_of_threads     the number of threads the server handles
+ */
+void read_requests(requests_holder requests_info[], int number_of_threads);
+
+/**
  * @brief Too late request handling. Empties the FIFO buffer
  * 
- * @param number_of_threads the number of threads the server handles
+ * @param requests_info         the requests info array
+ * @param number_of_threads     the number of threads the server handles
  */
-void read_late_requests(int number_of_threads);
+void read_late_requests(requests_holder requests_info[], int number_of_threads);
 
 #endif

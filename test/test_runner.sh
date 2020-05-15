@@ -20,8 +20,13 @@ fi
 ../Q2 -t "$1" -l "$3" -n "$4" "$5" > q2.log 2> q2.err & pid1=$!
 ../U2 -t "$2" "$5" > u2.log 2> u2.err & pid2=$!
 
-wait "$pid1"
-wait "$pid2"
+if [ "$1" -ge "$2" ]; then
+    wait "$pid2"
+    wait "$pid1"
+else
+    wait "$pid1"
+    wait "$pid2"
+fi
 
 n2LATE=$(grep 2LATE q2.log | wc -l) ; echo "2LATE: $n2LATE"
 nCLOSD=$(grep CLOSD u2.log | wc -l) ; echo "CLOSD: $nCLOSD"

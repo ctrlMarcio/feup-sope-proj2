@@ -105,7 +105,7 @@ Each feature is classified as bad, ok or great.
 To run the tests run the shell script **test_runner.sh** in the **test** directory. The test verifies if the number of 2LATE logs are equal to the number of CLOSD logs. Log and err files are created in the test directory.
 
 ```bash
-./test/test_runner.sh <server seconds> <client seconds> <FIFO name>
+./test/test_runner.sh <server seconds> <client seconds> <bathroom places> <thread number> <FIFO name>
 ```
 
 The output is **OK** if the test is successful, **FAILED** otherwise.

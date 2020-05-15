@@ -87,7 +87,11 @@ void destroy_mutex();
  */
 void set_bathroom_info(long *places, long max_places);
 
-// TODO
+/**
+ * @brief   Sets up the requests information variables.
+ * 
+ * @param   the requests holder struct
+ */
 void set_requests(requests_holder *rh);
 
 #endif
