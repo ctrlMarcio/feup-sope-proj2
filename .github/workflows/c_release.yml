@@ -26,17 +26,13 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: |
-            **Note:** this pre-release has not been fully tested and may contain errors.
+            ## New features / Improvements
+            - Memory optimization regarding the amount of handled threads
 
-            # New features / Improvements
-            - Support for a limited number of simultaneous users
-            - Support for a limited number of threads handling users
-            - Allow unordered argument specification
-
-            # Bug fixing
-            - General bug fixing
+            ## Bug fixing
+            - Slight increase of the time between sent requests to prevent reaching the OS limit of opened FIFOs/files
           draft: false
-          prerelease: true
+          prerelease: false
       - name: Upload Release Asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1

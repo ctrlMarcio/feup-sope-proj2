@@ -17,6 +17,10 @@ controlled by a Q process, which receives requests from users. Access requests a
 
 ## Version
 
+### v2.0
+
+The artifacts for the version 2.0 can ve accessed [here](https://github.com/ctrlMarcio/feup-sope-proj2/releases/tag/v2.0).
+
 ### v1.0
 
 The source code for the version 1.0 can be accessed [here](https://github.com/ctrlMarcio/feup-sope-proj2/tree/228a697e44ca587cf574e641789464c889ef0ec2), as well as the artifacts [here](https://github.com/ctrlMarcio/feup-sope-proj2/releases/tag/v1.0).
@@ -67,33 +71,33 @@ The FIFOs are stored in the **/tmp/** directory of the OS.
 
 ### Exit codes
 
-| Exit Code |         Name        | Description                                            |
+| Exit Code |        Name         | Description                                            |
 | :-------: | :-----------------: | ------------------------------------------------------ |
 |     1     |   Arguments Error   | Defines an error with the arguments.                   |
-|     2     |   Connection Error  | Defines an error connecting the client and the server. |
+|     2     |  Connection Error   | Defines an error connecting the client and the server. |
 |     3     | FIFO Creation Error | Defines an error while creating or opening a FIFO.     |
-|     4     |   Alarm Init Error  | Defines an error when creating an alarm.               |
+|     4     |  Alarm Init Error   | Defines an error when creating an alarm.               |
 |     5     |  Thread Init Error  | Defines an error when initializing a thread.           |
 
 ## Features
 
 Each feature is classified as bad, ok or great.
 
-|                Feature               |                                                     Status                                                    |
+|               Feature                |                                                    Status                                                     |
 | :----------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|            SIGINT Handling           |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
-|     Argument Reading and Handling    |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
-|     Multi-thread Request Handling    |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|           SIGINT Handling            |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|    Argument Reading and Handling     |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|    Multi-thread Request Handling     |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 |      Regular Request Processing      |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 | Irregular Request Processing (error) |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
-|         Operation Registering        |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
-|          Deadlock Situations         |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|        Operation Registering         |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|         Deadlock Situations          |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 |         Synced Memory Access         |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 |     Resource Removal and Release     |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 |          Pipe Communication          |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 |          SIGPIPE Handling\*          |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
-|       Limited Number of Threads      |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
-|   Limited Number of Nathroom Places  |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|      Limited Number of Threads       |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
+|  Limited Number of Bathroom Places   |   ![https://img.shields.io/badge/great-%20-brightgreen](https://img.shields.io/badge/great-%20-brightgreen)   |
 |                Hotel?                | ![https://img.shields.io/badge/trivago-%20-brightgreen](https://img.shields.io/badge/trivago-%20-brightgreen) |
 
 ### Notes
